@@ -1,5 +1,5 @@
-build: main.cpp a4.cpp a4.hpp
-	g++ main.cpp a4.cpp -o main
+build: main.cpp a5.cpp a5.hpp
+	g++ main.cpp a5.cpp -o main
 
 clean:
 	$(RM) main
