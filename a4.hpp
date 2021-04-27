@@ -39,7 +39,7 @@ class Core
 {
 
 private:
-    std::ifstream instream;
+    std::fstream instream;
 
 public:
 
@@ -59,6 +59,7 @@ public:
 
     void compile();
     bool execute();
+    void setup();
 
     void executeCommand(InstructionType i_type, std::vector<unsigned int> &params);
 
