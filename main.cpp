@@ -10,7 +10,7 @@
 #include <cmath>
 */
 
-#include "a4.hpp"
+#include "a5.hpp"
 
 std::string message;
 
@@ -125,7 +125,7 @@ Core::Core(std::string path, unsigned int core_num)
     this->base_address = core_num*(((unsigned int) pow(2, 18)) / n);
     this->curParsePointer = this->base_address;
     instream.open(path);
-    if (!instream)
+    if (!instream.is_open())
     {
         std::cerr << "Error: file \"" << path << "\" could not be opened" << std::endl;
         exit(-1);
@@ -707,7 +707,7 @@ std::vector<unsigned int> getParams(InstructionType i_type, unsigned int &instr,
 }
 
 // Function to execute the program
-void Core::execute()
+bool Core::execute()
 {
 
     if (branches.find("main") == branches.end())
@@ -776,6 +776,7 @@ void Core::execute()
     {
         std::cout << instruction_type_string[(int)p.first] << "\t" << p.second << std::endl;
     }
+    return true;
 }
 
 // To check if a char is a whitespace
@@ -1098,12 +1099,10 @@ void Core::compile()
     curParsePointer = 0;
     int lineNum = 1;
 
-    while (!feof(stdin))
+    std::string s;
+
+    while (std::getline(instream, s))
     {
-
-        std::string s;
-        std::getline(instream, s);
-
         parse(s, lineNum);
     }
 
