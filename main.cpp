@@ -124,8 +124,8 @@ Core::Core(std::string path, unsigned int core_num)
     this->core_num = core_num;
     this->base_address = core_num*(((unsigned int) pow(2, 18)) / n);
     this->curParsePointer = this->base_address;
-    instream.open(path);
-    if (!instream.is_open())
+    instream.open(path, std::ofstream::in);
+    if (!instream)
     {
         std::cerr << "Error: file \"" << path << "\" could not be opened" << std::endl;
         exit(-1);
@@ -134,8 +134,27 @@ Core::Core(std::string path, unsigned int core_num)
 
 int main(int argc, char *argv[])
 {
+
+    if (argc < 2)
+    {
+        std::cout << "Please give input file path" << std::endl;
+        exit(-1);
+    }
+
+    std::ifstream inFile;
+    inFile.open(argv[1], std::ofstream::in);
+
+    if (!inFile)
+    {
+        std::cerr << "Input correct file path" << std::endl;
+        exit(-1);
+    }
+
     std::cout << "Input the number of files: ";
-    std::cin >> n;
+    // return 0;
+    std::string temp;
+    getline(inFile, temp);
+    n = std::stoi(temp);
 
     if (((unsigned int) pow(2, 18)) % n != 0)
     {
@@ -149,9 +168,10 @@ int main(int argc, char *argv[])
     {
         std::cout << "Input the path of file " << (i + 1) << ": ";
         std::string path;
-        std::cin >> path;
+        getline(inFile, path);
         cores[i] = new Core(path, (unsigned int) i);
         cores[i]->compile();
+        cores[i]->setup();
     }
 
     while (true)
@@ -165,6 +185,7 @@ int main(int argc, char *argv[])
         {
             break;
         }
+        std::cout << totalCycles << std::endl;
     }
 
     std::cout << "Input DRAM row access delay: ";
@@ -706,25 +727,37 @@ std::vector<unsigned int> getParams(InstructionType i_type, unsigned int &instr,
     return std::vector<unsigned int>{};
 }
 
-// Function to execute the program
-bool Core::execute()
+void Core::setup()
 {
-
     if (branches.find("main") == branches.end())
     {
         throwRunTimeError("Address not found: main", core_num);
-        return false;
     }
     else
     {
         // Initialize program counter
         current = branches["main"];
     }
+}
+
+// Function to execute the program
+bool Core::execute()
+{
+    // if (branches.find("main") == branches.end())
+    // {
+    //     throwRunTimeError("Address not found: main", core_num);
+    //     return false;
+    // }
+    // else
+    // {
+    //     // Initialize program counter
+    //     current = branches["main"];
+    // }
 
     // While program counter is within the range of instructions, execute instructions
     // Change
     // while (current < endCommand  || dram_qu.size() > 0){
-    while (current < endCommand)
+    if (current < endCommand)
     {
         // end
         unsigned int instr = memory[current];
@@ -735,48 +768,40 @@ bool Core::execute()
         std::vector<unsigned int> params = getParams(i_type, instr, core_num);
         executeCommand(i_type, params);
 
-        register_file[0] = (unsigned int)0;
+        register_file[0] = (unsigned int) 0;
 
-        // Change
-        /* Deleted
-        instruction_count[i_type]++;
-        */
-        // end
         totalCycles++;
 
-        // Change
-        /* Deleted
-        printRegisterFile();
-        */
-        // end
+        return true;
     }
-
-    // Change
-    // Added
-    message = "";
-    while (cur != nullptr || dram_qu.size() > 0)
+    else
     {
-        printData(totalCycles, message);
-        configQueue(nullptr);
-        register_file[0] = (unsigned int)0;
-        totalCycles++;
+        return false;
     }
-    printRegisterFile(register_file, core_num);
-    std::cout << std::endl
-              << "Total row updates = " << row_updates_count << std::endl;
-    // end
 
-    std::cout << std::endl
-              << "Total clock cycles: " << totalCycles << std::endl
-              << std::endl;
+    // message = "";
+    // while (cur != nullptr || dram_qu.size() > 0)
+    // {
+    //     printData(totalCycles, message);
+    //     configQueue(nullptr);
+    //     register_file[0] = (unsigned int)0;
+    //     totalCycles++;
+    // }
+    // printRegisterFile(register_file, core_num);
+    // std::cout << std::endl
+    //           << "Total row updates = " << row_updates_count << std::endl;
+    // // end
 
-    std::cout << "Number of times each instruction is executed: " << std::endl
-              << std::endl;
-    for (std::pair<InstructionType, long long int> p : instruction_count)
-    {
-        std::cout << instruction_type_string[(int)p.first] << "\t" << p.second << std::endl;
-    }
-    return true;
+    // std::cout << std::endl
+    //           << "Total clock cycles: " << totalCycles << std::endl
+    //           << std::endl;
+
+    // std::cout << "Number of times each instruction is executed: " << std::endl
+    //           << std::endl;
+    // for (std::pair<InstructionType, long long int> p : instruction_count)
+    // {
+    //     std::cout << instruction_type_string[(int)p.first] << "\t" << p.second << std::endl;
+    // }
 }
 
 // To check if a char is a whitespace
