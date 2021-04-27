@@ -140,8 +140,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::ifstream inFile;
-    inFile.open(argv[1], std::ofstream::in);
+    std::ifstream inFile(argv[1], std::ofstream::in);
 
     if (!inFile)
     {
@@ -150,10 +149,11 @@ int main(int argc, char *argv[])
     }
 
     std::cout << "Input the number of files: ";
-    // return 0;
-    std::string temp;
-    getline(inFile, temp);
-    n = std::stoi(temp);
+
+    inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
+
+    optimize = true;
+
 
     if (((unsigned int) pow(2, 18)) % n != 0)
     {
@@ -162,6 +162,9 @@ int main(int argc, char *argv[])
     }
 
     Core *cores[n];
+
+    std::string temp;
+    getline(inFile, temp);
 
     for (int i = 0; i < n; i++)
     {
@@ -172,6 +175,12 @@ int main(int argc, char *argv[])
         cores[i]->compile();
         cores[i]->setup();
     }
+
+    // std::cout << "Input DRAM row access delay: ";
+    // std::cin >> DRAM::ROW_ACCESS_DELAY;
+
+    // std::cout << "Input DRAM column access delay: ";
+    // std::cin >> DRAM::COL_ACCESS_DELAY;
 
     while (true)
     {
@@ -186,14 +195,6 @@ int main(int argc, char *argv[])
         }
         std::cout << totalCycles << std::endl;
     }
-
-    std::cout << "Input DRAM row access delay: ";
-    std::cin >> DRAM::ROW_ACCESS_DELAY;
-
-    std::cout << "Input DRAM column access delay: ";
-    std::cin >> DRAM::COL_ACCESS_DELAY;
-
-    optimize = true;
 
     for (int i = 0; i < n; i++)
     {

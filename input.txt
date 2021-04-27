@@ -1,2 +1,9 @@
-1
-test.txt
+8 10 2
+test
+test1
+test1_2
+test3_1
+test3_2
+test4
+test5_1
+test5_2
