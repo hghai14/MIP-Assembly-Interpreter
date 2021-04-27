@@ -134,7 +134,6 @@ Core::Core(std::string path, unsigned int core_num)
 
 int main(int argc, char *argv[])
 {
-
     if (argc < 2)
     {
         std::cout << "Please give input file path" << std::endl;
