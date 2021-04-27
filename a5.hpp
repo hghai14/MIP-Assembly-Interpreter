@@ -10,12 +10,7 @@
 #include <cmath>
 #include <fstream>
 
-extern int busy[32];
-extern std::set<int> waiting;
-extern std::set<unsigned int> busy_mem;
-
 extern bool optimize;
-extern long long row_updates_count;
 
 // Memory array, 4 bytes at a time
 extern unsigned int memory[262144];
@@ -48,6 +43,7 @@ public:
     unsigned int base_address;
 
     unsigned int register_file[32];
+    unsigned int instruction_memory[1024];
     unsigned int curParsePointer;
     unsigned int endCommand; // Last Instruciton address
     unsigned int current; // PC
@@ -62,6 +58,17 @@ public:
     void setup();
 
     void executeCommand(InstructionType i_type, std::vector<unsigned int> &params);
+
+    void executeJ(std::vector<unsigned int> &params);
+    void executeAddi(std::vector<unsigned int> &params);
+    void executeAdd(std::vector<unsigned int> &params);
+    void executeSub(std::vector<unsigned int> &params);
+    void executeMul(std::vector<unsigned int> &params);
+    void executeSlt(std::vector<unsigned int> &params);
+    void executeBeq(std::vector<unsigned int> &params);
+    void executeBne(std::vector<unsigned int> &params);
+    void executeLw(std::vector<unsigned int> &params);
+    void executeSw(std::vector<unsigned int> &params);
 
     void parse(std::string s, int &lineNum);
     void parseInstruction(InstructionType i_type, std::vector<int> params, int &lineNum);
@@ -80,55 +87,12 @@ public:
 
 };
 
-class AccessType
-{
-
-public:
-    std::string message;
-    int param;
-    int cycles;
-
-    AccessType(std::string message, int param, int cycles);
-    ~AccessType();
-};
-
 class DRAM
 {
-
 public:
-    bool type;
-    unsigned int param;
-    unsigned int address;
-
-    Core* core;
-
-    std::set<int> depends;
-
     static int ROW_ACCESS_DELAY;
     static int COL_ACCESS_DELAY;
-
-    static int active_row;
-    static bool buffer_updated;
-
-    unsigned int row_num;
-    unsigned int col_num;
-
-    std::vector<AccessType> qu;
-
-    DRAM(bool type, unsigned int param, unsigned int address);
-    ~DRAM();
-
-    void next();
 };
-
-extern std::vector<DRAM *> dram_qu;
-extern DRAM *cur;
-
-void printData(long long cycle_num, std::string message);
-
-void configQueue(DRAM *req);
-
-void delete_redundant(unsigned int a);
 
 
 #endif

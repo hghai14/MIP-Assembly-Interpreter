@@ -1,15 +1,3 @@
-// Change
-
-/* Deleted
-#include <iostream>
-#include <cstring>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <set>
-#include <cmath>
-*/
-
 #include "a5.hpp"
 
 std::string message;
@@ -122,7 +110,7 @@ std::map<InstructionType, long long int> instruction_count = {
 Core::Core(std::string path, unsigned int core_num)
 {
     this->core_num = core_num;
-    this->base_address = core_num*(((unsigned int) pow(2, 18)) / n);
+    this->base_address = core_num * (((unsigned int)pow(2, 18)) / n);
     this->curParsePointer = this->base_address;
     instream.open(path, std::ofstream::in);
     if (!instream)
@@ -154,8 +142,7 @@ int main(int argc, char *argv[])
 
     optimize = true;
 
-
-    if (((unsigned int) pow(2, 18)) % n != 0)
+    if (((unsigned int)pow(2, 18)) % n != 0)
     {
         std::cout << "Invalid number of cores given: Number of cores must be in power of 2";
         exit(-1);
@@ -171,7 +158,7 @@ int main(int argc, char *argv[])
         std::cout << "Input the path of file " << (i + 1) << ": ";
         std::string path;
         getline(inFile, path);
-        cores[i] = new Core(path, (unsigned int) i);
+        cores[i] = new Core(path, (unsigned int)i);
         cores[i]->compile();
         cores[i]->setup();
     }
@@ -296,13 +283,10 @@ void detectOFadd(int a, int b, unsigned int current, unsigned int core_num)
 void detectOFmul(int a, int b, unsigned int current, unsigned int core_num)
 {
     std::string msg = "Warning : Overflow detected in multiplication";
-    // Change
-    // Added
     if (b == 0)
     {
         return;
     }
-    // end
     if ((a == -1) && (b == INT32_MIN))
     {
         printOverFlowMessage(msg, current, core_num);
@@ -348,336 +332,180 @@ InstructionType getInstructionType(unsigned int opcode, unsigned int &current, u
     return lw;
 }
 
+void Core::executeJ(std::vector<unsigned int> &params)
+{
+    std::string label = labels[(int)params[0]];
+
+    if (branches.find(label) == branches.end())
+    {
+        throwRunTimeError("Address not found: " + label, current);
+        return;
+    }
+    current = branches[label];
+    message = "Jumped to " + label;
+    instruction_count[jump]++;
+}
+
+void Core::executeAddi(std::vector<unsigned int> &params)
+{
+    unsigned int giv = params[2];
+    int num = (int)(giv << 16);
+    num = num >> 16;
+    int a = register_file[params[0]];
+    detectOFadd(a, num, current, core_num);
+    register_file[params[1]] = (unsigned int)(a + num);
+    message = "Add immediate instruction executed, " +
+                num_to_reg[params[1]] + " = " + num_to_reg[params[0]] + " + " + std::to_string(num) +
+                " = " + std::to_string((int)register_file[params[1]]);
+    instruction_count[addi]++;
+}
+
+void Core::executeAdd(std::vector<unsigned int> &params)
+{
+    int a = register_file[params[0]];
+    int b = register_file[params[1]];
+    detectOFadd(a, b, current, core_num);
+    register_file[params[2]] = (unsigned int)(a + b);
+    message = "Added register this to this";
+    message = "Add instruction executed, " +
+                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " + " + num_to_reg[params[1]] + " = " +
+                std::to_string((int)register_file[params[2]]);
+    instruction_count[add]++;
+}
+
+void Core::executeSub(std::vector<unsigned int> &params)
+{
+    int a = register_file[params[0]];
+    int b = register_file[params[1]];
+    detectOFsub(a, b, current, core_num);
+    register_file[params[2]] = (unsigned int)(a - b);
+    message = "Subtract instruction executed, " +
+                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " - " + num_to_reg[params[1]] + " = " +
+                std::to_string((int)register_file[params[2]]);
+    instruction_count[sub]++;
+}
+
+void Core::executeMul(std::vector<unsigned int> &params)
+{
+    int a = register_file[params[0]];
+    int b = register_file[params[1]];
+    detectOFmul(a, b, current, core_num);
+    register_file[params[2]] = (unsigned int)(a * b);
+    message = "Multiply instruction executed, " +
+                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " * " + num_to_reg[params[1]] + " = " +
+                std::to_string((int)register_file[params[2]]);
+    instruction_count[mul]++;
+}
+
+void Core::executeSlt(std::vector<unsigned int> &params)
+{
+    register_file[params[2]] = register_file[params[0]] < register_file[params[1]];
+    message = "Set on less than instruction executed, " +
+                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " < " + num_to_reg[params[1]] + " = " +
+                (register_file[params[0]] < register_file[params[1]] ? "1" : "0");
+    instruction_count[slt]++;
+}
+
+void Core::executeBeq(std::vector<unsigned int> &params)
+{
+    std::string label = labels[(int)params[2]];
+    if (branches.find(label) == branches.end())
+    {
+        throwRunTimeError("Identifier not defined: " + label, current);
+        return;
+    }
+    message = "Equality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
+    if (register_file[params[0]] == register_file[params[1]])
+    {
+        current = branches[label];
+        message += "Branched to the label " + label + "";
+    }
+    else
+    {
+        message += "No branching done";
+    }
+    instruction_count[beq]++;
+}
+
+void Core::executeBne(std::vector<unsigned int> &params)
+{
+    std::string label = labels[(int)params[2]];
+    if (branches.find(label) == branches.end())
+    {
+        throwRunTimeError("Identifier not defined: " + label, current);
+        return;
+    }
+    message = "Inequality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
+    if (register_file[params[0]] != register_file[params[1]])
+    {
+        current = branches[label];
+        message += "Branched to the label " + label + "";
+    }
+    else
+    {
+        message += "No branching done";
+    }
+    instruction_count[bne]++;
+}
+
+void Core::executeLw(std::vector<unsigned int> &params)
+{
+    params[1] = params[1] << 16;
+    int params1 = (int)params[1];
+    params1 = params1 >> 16;
+    int address = (params1 + (int)register_file[params[2]]);
+    if (address >= pow(2, 20) || address / 4 < (int)endCommand)
+    {
+        throwRunTimeError("Invalid memory address", current);
+    }
+    if (address % 4 != 0)
+    {
+        throwRunTimeError("Invalid memory address: should be aligned with 4", current);
+    }
+    message = "Load word instruction generated for DRAM from memory address " +
+                std::to_string(address) +
+                " to the register " + num_to_reg[params[0]];
+    instruction_count[lw]++;
+}
+
+void Core::executeSw(std::vector<unsigned int> &params)
+{
+    params[1] = params[1] << 16;
+    int params1 = (int)params[1];
+    params1 = params1 >> 16;
+    int address = (params1 + (int)register_file[params[2]]);
+
+    if (address >= pow(2, 20) || address / 4 < (int)endCommand)
+    {
+        throwRunTimeError("Invalid memory address", current);
+    }
+    if (address % 4 != 0)
+    {
+        throwRunTimeError("Invalid memory address: should be aligned with 4", current);
+    }
+    message = "Save word instruction generated for DRAM to memory address " +
+                std::to_string(address) +
+                " from the register " + num_to_reg[params[0]];
+    instruction_count[sw]++;
+}
+
 // Funciton to execute the commands
 void Core::executeCommand(InstructionType i_type, std::vector<unsigned int> &params)
 {
-    current++;
-    // Change
-    // Added
-    DRAM *new_instr = nullptr;
-    // end
-    message = "";
-
-    // Change
-    // Added
-    unsigned int to_check = -1;
     switch (i_type)
     {
-    case jump:
-        break;
-    case bne:
-        break;
-    case beq:
-        break;
-    case sw:
-        break;
-    case addi:
-        if (params[1] != params[0])
-        {
-            to_check = params[1];
-        }
-        break;
-    case lw:
-        if (params[2] != params[0])
-        {
-            to_check = params[0];
-        }
-        break;
-    default:
-        if (params[2] != params[0] && params[2] != params[1])
-        {
-            to_check = params[2];
-        }
-        break;
+        case jump: executeJ(params); break;
+        case addi: executeAddi(params); break;
+        case add: executeAdd(params); break;
+        case sub: executeSub(params); break;
+        case mul: executeMul(params); break;
+        case slt: executeSlt(params); break;
+        case beq: executeBeq(params); break;
+        case bne: executeBne(params); break;
+        case lw: executeLw(params); break;
+        case sw: executeSw(params); break;
+        default: break;
     }
-
-    if (to_check != -1)
-    {
-        delete_redundant(to_check);
-    }
-
-    // end
-
-    // Change
-    // So many changes
-    if (i_type == jump)
-    {
-        std::string label = labels[(int)params[0]];
-
-        if (branches.find(label) == branches.end())
-        {
-            throwRunTimeError("Address not found: " + label, current);
-            return;
-        }
-        current = branches[label];
-        message = "Jumped to " + label;
-        waiting.clear();
-        instruction_count[jump]++;
-    }
-    else if (i_type == add)
-    {
-        // Changed
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0 ||
-            busy[params[2]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            int a = register_file[params[0]];
-            int b = register_file[params[1]];
-            detectOFadd(a, b, current, core_num);
-            register_file[params[2]] = (unsigned int)(a + b);
-            message = "Added register this to this";
-            message = "Add instruction executed, " +
-                      num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " + " + num_to_reg[params[1]] + " = " +
-                      std::to_string((int)register_file[params[2]]);
-            waiting.clear();
-            instruction_count[add]++;
-        }
-        // end
-    }
-    else if (i_type == sub)
-    {
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0 ||
-            busy[params[2]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            int a = register_file[params[0]];
-            int b = register_file[params[1]];
-            detectOFsub(a, b, current, core_num);
-            register_file[params[2]] = (unsigned int)(a - b);
-            message = "Subtract instruction executed, " +
-                      num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " - " + num_to_reg[params[1]] + " = " +
-                      std::to_string((int)register_file[params[2]]);
-            waiting.clear();
-            instruction_count[sub]++;
-        }
-    }
-    else if (i_type == mul)
-    {
-        // Changed
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0 ||
-            busy[params[2]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            int a = register_file[params[0]];
-            int b = register_file[params[1]];
-            detectOFmul(a, b, current, core_num);
-            register_file[params[2]] = (unsigned int)(a * b);
-            message = "Multiply instruction executed, " +
-                      num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " * " + num_to_reg[params[1]] + " = " +
-                      std::to_string((int)register_file[params[2]]);
-            waiting.clear();
-            instruction_count[mul]++;
-        }
-        // end
-    }
-    else if (i_type == slt)
-    {
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0 ||
-            busy[params[2]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            register_file[params[2]] = register_file[params[0]] < register_file[params[1]];
-            message = "Set on less than instruction executed, " +
-                      num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " < " + num_to_reg[params[1]] + " = " +
-                      (register_file[params[0]] < register_file[params[1]] ? "1" : "0");
-            waiting.clear();
-            instruction_count[slt]++;
-        }
-    }
-    else if (i_type == addi)
-    {
-        // Changed
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-        }
-        else
-        {
-            unsigned int giv = params[2];
-            int num = (int)(giv << 16);
-            num = num >> 16;
-            int a = register_file[params[0]];
-            detectOFadd(a, num, current, core_num);
-            register_file[params[1]] = (unsigned int)(a + num);
-            message = "Add immediate instruction executed, " +
-                      num_to_reg[params[1]] + " = " + num_to_reg[params[0]] + " + " + std::to_string(num) +
-                      " = " + std::to_string((int)register_file[params[1]]);
-            waiting.clear();
-            instruction_count[addi]++;
-        }
-        // end
-    }
-    else if (i_type == beq)
-    {
-        // Changed
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-        }
-        else
-        {
-            std::string label = labels[(int)params[2]];
-            if (branches.find(label) == branches.end())
-            {
-                throwRunTimeError("Identifier not defined: " + label, current);
-                return;
-            }
-            message = "Equality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
-            if (register_file[params[0]] == register_file[params[1]])
-            {
-                current = branches[label];
-                message += "Branched to the label " + label + "";
-            }
-            else
-            {
-                message += "No branching done";
-            }
-            waiting.clear();
-            instruction_count[beq]++;
-        }
-        // end
-    }
-    else if (i_type == bne)
-    {
-        // Changed
-        if (busy[params[0]] > 0 ||
-            busy[params[1]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[1]);
-        }
-        else
-        {
-            std::string label = labels[(int)params[2]];
-            if (branches.find(label) == branches.end())
-            {
-                throwRunTimeError("Identifier not defined: " + label, current);
-                return;
-            }
-            message = "Inequality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
-            if (register_file[params[0]] != register_file[params[1]])
-            {
-                current = branches[label];
-                message += "Branched to the label " + label + "";
-            }
-            else
-            {
-                message += "No branching done";
-            }
-            waiting.clear();
-            instruction_count[bne]++;
-        }
-        // end
-    }
-    else if (i_type == lw)
-    {
-        params[1] = params[1] << 16;
-        int params1 = (int)params[1];
-        params1 = params1 >> 16;
-        int address = (params1 + (int)register_file[params[2]]);
-        if (busy[params[0]] > 0 ||
-            busy[params[2]] > 0 ||
-            busy_mem.find(address) != busy_mem.end())
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            if (address >= pow(2, 20) || address / 4 < (int)endCommand)
-            {
-                throwRunTimeError("Invalid memory address", current);
-            }
-            if (address % 4 != 0)
-            {
-                throwRunTimeError("Invalid memory address: should be aligned with 4", current);
-            }
-            new_instr = new DRAM(true, params[0], (unsigned int)address);
-            busy[params[0]] = 1;
-            busy_mem.insert((unsigned int)address);
-            message = "Load word instruction generated for DRAM from memory address " +
-                      std::to_string(address) +
-                      " to the register " + num_to_reg[params[0]];
-            waiting.clear();
-            instruction_count[lw]++;
-        }
-    }
-    else if (i_type == sw)
-    {
-        params[1] = params[1] << 16;
-        int params1 = (int)params[1];
-        params1 = params1 >> 16;
-        int address = (params1 + (int)register_file[params[2]]);
-
-        if (busy[params[0]] > 0 ||
-            busy[params[2]] > 0)
-        {
-            current--;
-            waiting.insert(params[0]);
-            waiting.insert(params[2]);
-        }
-        else
-        {
-            if (address >= pow(2, 20) || address / 4 < (int)endCommand)
-            {
-                throwRunTimeError("Invalid memory address", current);
-            }
-            if (address % 4 != 0)
-            {
-                throwRunTimeError("Invalid memory address: should be aligned with 4", current);
-            }
-            busy_mem.insert((unsigned int)address);
-            new_instr = new DRAM(false, register_file[params[0]], (unsigned int)address);
-            message = "Save word instruction generated for DRAM to memory address " +
-                      std::to_string(address) +
-                      " from the register " + num_to_reg[params[0]];
-            waiting.clear();
-            instruction_count[sw]++;
-        }
-    }
-    // end
-
-    // Change
-    // Added
-    printData(totalCycles, message);
-    configQueue(new_instr);
-    // end
 }
 
 // Get parameters for the instruction from the instruction stored as 32 bit in the memory
@@ -743,24 +571,10 @@ void Core::setup()
 // Function to execute the program
 bool Core::execute()
 {
-    // if (branches.find("main") == branches.end())
-    // {
-    //     throwRunTimeError("Address not found: main", core_num);
-    //     return false;
-    // }
-    // else
-    // {
-    //     // Initialize program counter
-    //     current = branches["main"];
-    // }
-
-    // While program counter is within the range of instructions, execute instructions
-    // Change
-    // while (current < endCommand  || dram_qu.size() > 0){
     if (current < endCommand)
     {
         // end
-        unsigned int instr = memory[current];
+        unsigned int instr = instruction_memory[current];
         unsigned int opcode = instr >> 26;
 
         InstructionType i_type = getInstructionType(opcode, current, core_num);
@@ -768,9 +582,7 @@ bool Core::execute()
         std::vector<unsigned int> params = getParams(i_type, instr, core_num);
         executeCommand(i_type, params);
 
-        register_file[0] = (unsigned int) 0;
-
-        totalCycles++;
+        register_file[0] = (unsigned int)0;
 
         return true;
     }
@@ -778,30 +590,6 @@ bool Core::execute()
     {
         return false;
     }
-
-    // message = "";
-    // while (cur != nullptr || dram_qu.size() > 0)
-    // {
-    //     printData(totalCycles, message);
-    //     configQueue(nullptr);
-    //     register_file[0] = (unsigned int)0;
-    //     totalCycles++;
-    // }
-    // printRegisterFile(register_file, core_num);
-    // std::cout << std::endl
-    //           << "Total row updates = " << row_updates_count << std::endl;
-    // // end
-
-    // std::cout << std::endl
-    //           << "Total clock cycles: " << totalCycles << std::endl
-    //           << std::endl;
-
-    // std::cout << "Number of times each instruction is executed: " << std::endl
-    //           << std::endl;
-    // for (std::pair<InstructionType, long long int> p : instruction_count)
-    // {
-    //     std::cout << instruction_type_string[(int)p.first] << "\t" << p.second << std::endl;
-    // }
 }
 
 // To check if a char is a whitespace
@@ -909,11 +697,8 @@ std::vector<std::string> getLoadSaveTokens(std::string &s, int &i, int &lineNum,
         }
     }
     res.push_back(s.substr(j, i - j));
-    // Change
-    // while (!isNum(s.at(i))){
     while (!isNum(s.at(i)) && s.at(i) != '-')
     {
-        // end
         i++;
         if (i >= s.length())
         {
@@ -921,13 +706,10 @@ std::vector<std::string> getLoadSaveTokens(std::string &s, int &i, int &lineNum,
         }
     }
     j = i;
-    // Change
-    // Added
     if (s.at(i) == '-')
     {
         i++;
     }
-    // end
     while (isNum(s.at(i)))
     {
         i++;
@@ -1143,7 +925,7 @@ void Core::parseInstruction(InstructionType i_type, std::vector<int> params, int
     {
         unsigned int address = params[0];
         unsigned int opcode = op_codes[jump] << 26;
-        memory[curParsePointer++] = address + opcode;
+        instruction_memory[curParsePointer++] = address + opcode;
     }
     else if (i_type == add || i_type == sub || i_type == mul || i_type == slt)
     {
@@ -1151,7 +933,7 @@ void Core::parseInstruction(InstructionType i_type, std::vector<int> params, int
         unsigned int rt = params[2] << 16;
         unsigned int rd = params[0] << 11;
         unsigned int opcode = op_codes[i_type] << 26;
-        memory[curParsePointer++] = opcode + rs + rt + rd;
+        instruction_memory[curParsePointer++] = opcode + rs + rt + rd;
     }
     else if (i_type == addi)
     {
@@ -1161,7 +943,7 @@ void Core::parseInstruction(InstructionType i_type, std::vector<int> params, int
             throwError("Integer out of range", lineNum, core_num);
         unsigned int num = params[2] & (((unsigned int)(-1)) >> 16);
         unsigned int opcode = op_codes[i_type] << 26;
-        memory[curParsePointer++] = opcode + rs + rt + num;
+        instruction_memory[curParsePointer++] = opcode + rs + rt + num;
     }
     else if (i_type == beq || i_type == bne)
     {
@@ -1169,29 +951,23 @@ void Core::parseInstruction(InstructionType i_type, std::vector<int> params, int
         unsigned int rt = params[0] << 16;
         unsigned int address = params[2];
         unsigned int opcode = op_codes[i_type] << 26;
-        memory[curParsePointer++] = opcode + rs + rt + address;
+        instruction_memory[curParsePointer++] = opcode + rs + rt + address;
     }
     else if (i_type == lw)
     {
         unsigned int rs = params[2] << 21;
         unsigned int rt = params[0] << 16;
-        // Change
-        // unsigned int shamt = params[1];
         unsigned int shamt = ((int)pow(2, 16) - 1) & params[1];
-        // end
         unsigned int opcode = op_codes[i_type] << 26;
-        memory[curParsePointer++] = opcode + rs + rt + shamt;
+        instruction_memory[curParsePointer++] = opcode + rs + rt + shamt;
     }
     else if (i_type == sw)
     {
         unsigned int rs = params[0] << 21;
         unsigned int rt = params[2] << 16;
-        // Change
-        // unsigned int shamt = params[1];
         unsigned int shamt = ((int)pow(2, 16) - 1) & params[1];
-        // end
         unsigned int opcode = op_codes[i_type] << 26;
-        memory[curParsePointer++] = opcode + rs + rt + shamt;
+        instruction_memory[curParsePointer++] = opcode + rs + rt + shamt;
     }
     else
     {
