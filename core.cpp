@@ -16,6 +16,11 @@ void Core::executeJ(std::vector<unsigned int> &params)
 
 void Core::executeAddi(std::vector<unsigned int> &params)
 {
+    if (writeBusy)
+    {
+        current--;
+        return;
+    }
     unsigned int giv = params[2];
     int num = (int)(giv << 16);
     num = num >> 16;
@@ -30,6 +35,11 @@ void Core::executeAddi(std::vector<unsigned int> &params)
 
 void Core::executeAdd(std::vector<unsigned int> &params)
 {
+    if (writeBusy)
+    {
+        current--;
+        return;
+    }
     int a = register_file[params[0]];
     int b = register_file[params[1]];
     detectOFadd(a, b, current, core_num);
@@ -43,6 +53,11 @@ void Core::executeAdd(std::vector<unsigned int> &params)
 
 void Core::executeSub(std::vector<unsigned int> &params)
 {
+    if (writeBusy)
+    {
+        current--;
+        return;
+    }
     int a = register_file[params[0]];
     int b = register_file[params[1]];
     detectOFsub(a, b, current, core_num);
@@ -55,6 +70,11 @@ void Core::executeSub(std::vector<unsigned int> &params)
 
 void Core::executeMul(std::vector<unsigned int> &params)
 {
+    if (writeBusy)
+    {
+        current--;
+        return;
+    }
     int a = register_file[params[0]];
     int b = register_file[params[1]];
     detectOFmul(a, b, current, core_num);
@@ -67,6 +87,11 @@ void Core::executeMul(std::vector<unsigned int> &params)
 
 void Core::executeSlt(std::vector<unsigned int> &params)
 {
+    if (writeBusy)
+    {
+        current--;
+        return;
+    }
     register_file[params[2]] = register_file[params[0]] < register_file[params[1]];
     message = "Set on less than instruction executed, " +
                 num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " < " + num_to_reg[params[1]] + " = " +
@@ -79,7 +104,7 @@ void Core::executeBeq(std::vector<unsigned int> &params)
     std::string label = labels[(int)params[2]];
     if (branches.find(label) == branches.end())
     {
-        throwRunTimeError("Identifier not defined: " + label, current);
+        throwRunTimeError("Branch not defined: " + label, current);
         return;
     }
     message = "Equality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
@@ -100,7 +125,7 @@ void Core::executeBne(std::vector<unsigned int> &params)
     std::string label = labels[(int)params[2]];
     if (branches.find(label) == branches.end())
     {
-        throwRunTimeError("Identifier not defined: " + label, current);
+        throwRunTimeError("Branch not defined: " + label, current);
         return;
     }
     message = "Inequality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
@@ -130,6 +155,8 @@ void Core::executeLw(std::vector<unsigned int> &params)
     {
         throwRunTimeError("Invalid memory address: should be aligned with 4", current);
     }
+    DRAM::addRequest(new Request(this, true, address, params[0]));
+    pendingRequests++;
     message = "Load word instruction generated for DRAM from memory address " +
                 std::to_string(address) +
                 " to the register " + num_to_reg[params[0]];
@@ -151,6 +178,8 @@ void Core::executeSw(std::vector<unsigned int> &params)
     {
         throwRunTimeError("Invalid memory address: should be aligned with 4", current);
     }
+    DRAM::addRequest(new Request(this, false, address, -1));
+    pendingRequests++;
     message = "Save word instruction generated for DRAM to memory address " +
                 std::to_string(address) +
                 " from the register " + num_to_reg[params[0]];
@@ -160,6 +189,11 @@ void Core::executeSw(std::vector<unsigned int> &params)
 // Funciton to execute the commands
 void Core::executeCommand(InstructionType i_type, std::vector<unsigned int> &params)
 {
+    if (pendingRequests > 0)
+    {
+        return;
+    }
+    current++;
     switch (i_type)
     {
         case jump: executeJ(params); break;
@@ -174,4 +208,9 @@ void Core::executeCommand(InstructionType i_type, std::vector<unsigned int> &par
         case sw: executeSw(params); break;
         default: break;
     }
+}
+
+void Core::printData()
+{
+    
 }
