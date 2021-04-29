@@ -1,6 +1,6 @@
 #include "a5.hpp"
 
-std::string message;
+bool optimize = true;
 
 // Memory array, 4 bytes at a time
 unsigned int memory[262144];
@@ -9,12 +9,12 @@ long long int totalCycles = 0;
 
 int n;
 
-std::string instruction_type_string[] = {"j", "add", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
+std::string Core::instruction_type_string[] = {"j", "add", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
 
 // Set to check a reserved word
-std::set<std::string> reserved_words{"add", "j", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
+std::set<std::string> Core::reserved_words{"add", "j", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
 
-std::map<InstructionType, int> op_codes({std::make_pair(add, 32),
+std::map<InstructionType, int> Core::op_codes({std::make_pair(add, 32),
                                          std::make_pair(slt, 42),
                                          std::make_pair(sub, 34),
                                          std::make_pair(jump, 2),
@@ -25,7 +25,7 @@ std::map<InstructionType, int> op_codes({std::make_pair(add, 32),
                                          std::make_pair(sw, 43),
                                          std::make_pair(addi, 8)});
 
-std::map<std::string, int> register_map = {
+std::map<std::string, int> Core::register_map = {
     std::make_pair("zero", 0),
     std::make_pair("at", 1),
     std::make_pair("v0", 2),
@@ -59,7 +59,7 @@ std::map<std::string, int> register_map = {
     std::make_pair("fp", 30),
     std::make_pair("ra", 31)};
 
-std::map<int, std::string> num_to_reg = {
+std::map<int, std::string> Core::num_to_reg = {
     std::make_pair(4, "a0"),
     std::make_pair(5, "a1"),
     std::make_pair(6, "a2"),
@@ -94,19 +94,6 @@ std::map<int, std::string> num_to_reg = {
     std::make_pair(0, "zero"),
 };
 
-std::map<InstructionType, long long int> instruction_count = {
-    std::make_pair(jump, 0),
-    std::make_pair(add, 0),
-    std::make_pair(sub, 0),
-    std::make_pair(mul, 0),
-    std::make_pair(slt, 0),
-    std::make_pair(addi, 0),
-    std::make_pair(bne, 0),
-    std::make_pair(beq, 0),
-    std::make_pair(lw, 0),
-    std::make_pair(sw, 0),
-};
-
 Core::Core(std::string path, unsigned int core_num)
 {
     this->core_num = core_num;
@@ -136,8 +123,6 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::cout << "Input the number of files: ";
-
     inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
 
     optimize = true;
@@ -155,19 +140,12 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < n; i++)
     {
-        std::cout << "Input the path of file " << (i + 1) << ": ";
         std::string path;
         getline(inFile, path);
         cores[i] = new Core(path, (unsigned int)i);
         cores[i]->compile();
         cores[i]->setup();
     }
-
-    // std::cout << "Input DRAM row access delay: ";
-    // std::cin >> DRAM::ROW_ACCESS_DELAY;
-
-    // std::cout << "Input DRAM column access delay: ";
-    // std::cin >> DRAM::COL_ACCESS_DELAY;
 
     while (true)
     {
@@ -216,7 +194,7 @@ std::string decToHex(unsigned int n)
 }
 
 // Function to print register file
-void printRegisterFile(unsigned int register_file[], unsigned int core_num)
+void Core::printRegisterFile(unsigned int register_file[], unsigned int core_num)
 {
 
     std::cout << std::endl
@@ -319,7 +297,7 @@ void detectOFsub(int a, int b, unsigned int current, unsigned int core_num)
 }
 
 // Function to get the instruction type based on opcode of the instruction
-InstructionType getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num)
+InstructionType Core::getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num)
 {
     for (std::pair<InstructionType, int> temp : op_codes)
     {
@@ -330,182 +308,6 @@ InstructionType getInstructionType(unsigned int opcode, unsigned int &current, u
     }
     throwRunTimeError("No such instruction", current, core_num);
     return lw;
-}
-
-void Core::executeJ(std::vector<unsigned int> &params)
-{
-    std::string label = labels[(int)params[0]];
-
-    if (branches.find(label) == branches.end())
-    {
-        throwRunTimeError("Address not found: " + label, current);
-        return;
-    }
-    current = branches[label];
-    message = "Jumped to " + label;
-    instruction_count[jump]++;
-}
-
-void Core::executeAddi(std::vector<unsigned int> &params)
-{
-    unsigned int giv = params[2];
-    int num = (int)(giv << 16);
-    num = num >> 16;
-    int a = register_file[params[0]];
-    detectOFadd(a, num, current, core_num);
-    register_file[params[1]] = (unsigned int)(a + num);
-    message = "Add immediate instruction executed, " +
-                num_to_reg[params[1]] + " = " + num_to_reg[params[0]] + " + " + std::to_string(num) +
-                " = " + std::to_string((int)register_file[params[1]]);
-    instruction_count[addi]++;
-}
-
-void Core::executeAdd(std::vector<unsigned int> &params)
-{
-    int a = register_file[params[0]];
-    int b = register_file[params[1]];
-    detectOFadd(a, b, current, core_num);
-    register_file[params[2]] = (unsigned int)(a + b);
-    message = "Added register this to this";
-    message = "Add instruction executed, " +
-                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " + " + num_to_reg[params[1]] + " = " +
-                std::to_string((int)register_file[params[2]]);
-    instruction_count[add]++;
-}
-
-void Core::executeSub(std::vector<unsigned int> &params)
-{
-    int a = register_file[params[0]];
-    int b = register_file[params[1]];
-    detectOFsub(a, b, current, core_num);
-    register_file[params[2]] = (unsigned int)(a - b);
-    message = "Subtract instruction executed, " +
-                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " - " + num_to_reg[params[1]] + " = " +
-                std::to_string((int)register_file[params[2]]);
-    instruction_count[sub]++;
-}
-
-void Core::executeMul(std::vector<unsigned int> &params)
-{
-    int a = register_file[params[0]];
-    int b = register_file[params[1]];
-    detectOFmul(a, b, current, core_num);
-    register_file[params[2]] = (unsigned int)(a * b);
-    message = "Multiply instruction executed, " +
-                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " * " + num_to_reg[params[1]] + " = " +
-                std::to_string((int)register_file[params[2]]);
-    instruction_count[mul]++;
-}
-
-void Core::executeSlt(std::vector<unsigned int> &params)
-{
-    register_file[params[2]] = register_file[params[0]] < register_file[params[1]];
-    message = "Set on less than instruction executed, " +
-                num_to_reg[params[2]] + " = " + num_to_reg[params[0]] + " < " + num_to_reg[params[1]] + " = " +
-                (register_file[params[0]] < register_file[params[1]] ? "1" : "0");
-    instruction_count[slt]++;
-}
-
-void Core::executeBeq(std::vector<unsigned int> &params)
-{
-    std::string label = labels[(int)params[2]];
-    if (branches.find(label) == branches.end())
-    {
-        throwRunTimeError("Identifier not defined: " + label, current);
-        return;
-    }
-    message = "Equality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
-    if (register_file[params[0]] == register_file[params[1]])
-    {
-        current = branches[label];
-        message += "Branched to the label " + label + "";
-    }
-    else
-    {
-        message += "No branching done";
-    }
-    instruction_count[beq]++;
-}
-
-void Core::executeBne(std::vector<unsigned int> &params)
-{
-    std::string label = labels[(int)params[2]];
-    if (branches.find(label) == branches.end())
-    {
-        throwRunTimeError("Identifier not defined: " + label, current);
-        return;
-    }
-    message = "Inequality checked between registers " + num_to_reg[params[0]] + " and " + num_to_reg[params[1]] + ", ";
-    if (register_file[params[0]] != register_file[params[1]])
-    {
-        current = branches[label];
-        message += "Branched to the label " + label + "";
-    }
-    else
-    {
-        message += "No branching done";
-    }
-    instruction_count[bne]++;
-}
-
-void Core::executeLw(std::vector<unsigned int> &params)
-{
-    params[1] = params[1] << 16;
-    int params1 = (int)params[1];
-    params1 = params1 >> 16;
-    int address = (params1 + (int)register_file[params[2]]);
-    if (address >= pow(2, 20) || address / 4 < (int)endCommand)
-    {
-        throwRunTimeError("Invalid memory address", current);
-    }
-    if (address % 4 != 0)
-    {
-        throwRunTimeError("Invalid memory address: should be aligned with 4", current);
-    }
-    message = "Load word instruction generated for DRAM from memory address " +
-                std::to_string(address) +
-                " to the register " + num_to_reg[params[0]];
-    instruction_count[lw]++;
-}
-
-void Core::executeSw(std::vector<unsigned int> &params)
-{
-    params[1] = params[1] << 16;
-    int params1 = (int)params[1];
-    params1 = params1 >> 16;
-    int address = (params1 + (int)register_file[params[2]]);
-
-    if (address >= pow(2, 20) || address / 4 < (int)endCommand)
-    {
-        throwRunTimeError("Invalid memory address", current);
-    }
-    if (address % 4 != 0)
-    {
-        throwRunTimeError("Invalid memory address: should be aligned with 4", current);
-    }
-    message = "Save word instruction generated for DRAM to memory address " +
-                std::to_string(address) +
-                " from the register " + num_to_reg[params[0]];
-    instruction_count[sw]++;
-}
-
-// Funciton to execute the commands
-void Core::executeCommand(InstructionType i_type, std::vector<unsigned int> &params)
-{
-    switch (i_type)
-    {
-        case jump: executeJ(params); break;
-        case addi: executeAddi(params); break;
-        case add: executeAdd(params); break;
-        case sub: executeSub(params); break;
-        case mul: executeMul(params); break;
-        case slt: executeSlt(params); break;
-        case beq: executeBeq(params); break;
-        case bne: executeBne(params); break;
-        case lw: executeLw(params); break;
-        case sw: executeSw(params); break;
-        default: break;
-    }
 }
 
 // Get parameters for the instruction from the instruction stored as 32 bit in the memory
