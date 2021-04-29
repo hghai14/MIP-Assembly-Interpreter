@@ -1,4 +1,111 @@
-#include "Core.hpp"
+#include "a5.hpp"
+
+std::string message;
+
+// Memory array, 4 bytes at a time
+unsigned int memory[262144];
+
+long long int totalCycles = 0;
+
+int n;
+
+std::string instruction_type_string[] = {"j", "add", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
+
+// Set to check a reserved word
+std::set<std::string> reserved_words{"add", "j", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
+
+std::map<InstructionType, int> op_codes({std::make_pair(add, 32),
+                                         std::make_pair(slt, 42),
+                                         std::make_pair(sub, 34),
+                                         std::make_pair(jump, 2),
+                                         std::make_pair(mul, 24),
+                                         std::make_pair(beq, 4),
+                                         std::make_pair(bne, 5),
+                                         std::make_pair(lw, 35),
+                                         std::make_pair(sw, 43),
+                                         std::make_pair(addi, 8)});
+
+std::map<std::string, int> register_map = {
+    std::make_pair("zero", 0),
+    std::make_pair("at", 1),
+    std::make_pair("v0", 2),
+    std::make_pair("v1", 3),
+    std::make_pair("a0", 4),
+    std::make_pair("a1", 5),
+    std::make_pair("a2", 6),
+    std::make_pair("a3", 7),
+    std::make_pair("t0", 8),
+    std::make_pair("t1", 9),
+    std::make_pair("t2", 10),
+    std::make_pair("t3", 11),
+    std::make_pair("t4", 12),
+    std::make_pair("t5", 13),
+    std::make_pair("t6", 14),
+    std::make_pair("t7", 15),
+    std::make_pair("s0", 16),
+    std::make_pair("s1", 17),
+    std::make_pair("s2", 18),
+    std::make_pair("s3", 19),
+    std::make_pair("s4", 20),
+    std::make_pair("s5", 21),
+    std::make_pair("s6", 22),
+    std::make_pair("s7", 23),
+    std::make_pair("t8", 24),
+    std::make_pair("t9", 25),
+    std::make_pair("k0", 26),
+    std::make_pair("k1", 27),
+    std::make_pair("gp", 28),
+    std::make_pair("sp", 29),
+    std::make_pair("fp", 30),
+    std::make_pair("ra", 31)};
+
+std::map<int, std::string> num_to_reg = {
+    std::make_pair(4, "a0"),
+    std::make_pair(5, "a1"),
+    std::make_pair(6, "a2"),
+    std::make_pair(7, "a3"),
+    std::make_pair(1, "at"),
+    std::make_pair(30, "fp"),
+    std::make_pair(28, "gp"),
+    std::make_pair(26, "k0"),
+    std::make_pair(27, "k1"),
+    std::make_pair(31, "ra"),
+    std::make_pair(16, "s0"),
+    std::make_pair(17, "s1"),
+    std::make_pair(18, "s2"),
+    std::make_pair(19, "s3"),
+    std::make_pair(20, "s4"),
+    std::make_pair(21, "s5"),
+    std::make_pair(22, "s6"),
+    std::make_pair(23, "s7"),
+    std::make_pair(29, "sp"),
+    std::make_pair(8, "t0"),
+    std::make_pair(9, "t1"),
+    std::make_pair(10, "t2"),
+    std::make_pair(11, "t3"),
+    std::make_pair(12, "t4"),
+    std::make_pair(13, "t5"),
+    std::make_pair(14, "t6"),
+    std::make_pair(15, "t7"),
+    std::make_pair(24, "t8"),
+    std::make_pair(25, "t9"),
+    std::make_pair(2, "v0"),
+    std::make_pair(3, "v1"),
+    std::make_pair(0, "zero"),
+};
+
+std::map<InstructionType, long long int> instruction_count = {
+    std::make_pair(jump, 0),
+    std::make_pair(add, 0),
+    std::make_pair(sub, 0),
+    std::make_pair(mul, 0),
+    std::make_pair(slt, 0),
+    std::make_pair(addi, 0),
+    std::make_pair(bne, 0),
+    std::make_pair(beq, 0),
+    std::make_pair(lw, 0),
+    std::make_pair(sw, 0),
+};
 
 Core::Core(std::string path, unsigned int core_num)
 {
@@ -11,6 +118,218 @@ Core::Core(std::string path, unsigned int core_num)
         std::cerr << "Error: file \"" << path << "\" could not be opened" << std::endl;
         exit(-1);
     }
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        std::cout << "Please give input file path" << std::endl;
+        exit(-1);
+    }
+
+    std::ifstream inFile(argv[1], std::ofstream::in);
+
+    if (!inFile)
+    {
+        std::cerr << "Input correct file path" << std::endl;
+        exit(-1);
+    }
+
+    std::cout << "Input the number of files: ";
+
+    inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
+
+    optimize = true;
+
+    if (((unsigned int)pow(2, 18)) % n != 0)
+    {
+        std::cout << "Invalid number of cores given: Number of cores must be in power of 2";
+        exit(-1);
+    }
+
+    Core *cores[n];
+
+    std::string temp;
+    getline(inFile, temp);
+
+    for (int i = 0; i < n; i++)
+    {
+        std::cout << "Input the path of file " << (i + 1) << ": ";
+        std::string path;
+        getline(inFile, path);
+        cores[i] = new Core(path, (unsigned int)i);
+        cores[i]->compile();
+        cores[i]->setup();
+    }
+
+    // std::cout << "Input DRAM row access delay: ";
+    // std::cin >> DRAM::ROW_ACCESS_DELAY;
+
+    // std::cout << "Input DRAM column access delay: ";
+    // std::cin >> DRAM::COL_ACCESS_DELAY;
+
+    while (true)
+    {
+        bool f = false;
+        for (unsigned int i = 0; i < n; i++)
+        {
+            f = f | cores[i]->execute();
+        }
+        if (!f)
+        {
+            break;
+        }
+        std::cout << totalCycles << std::endl;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        delete cores[i];
+    }
+
+    return 0;
+}
+
+// Decimal to hex converter for printing
+std::string decToHex(unsigned int n)
+{
+    char output[10];
+    output[0] = '0';
+    output[1] = 'x';
+
+    for (int i = 9; i >= 2; i--)
+    {
+        int temp = n % 16;
+        if (temp < 10)
+        {
+            output[i] = (char)(temp + 48);
+        }
+        else
+        {
+            output[i] = (char)(temp + 97 - 10);
+        }
+        n /= 16;
+    }
+
+    return std::string(output, output + 10);
+}
+
+// Function to print register file
+void printRegisterFile(unsigned int register_file[], unsigned int core_num)
+{
+
+    std::cout << std::endl
+              << "Register file of core " << core_num << std::endl;
+
+    for (int i = 0; i < 32; i++)
+    {
+
+        std::cout << "R" << i << "\t" << num_to_reg[i] << "\t" << decToHex(register_file[i]) << "\t" << (int)register_file[i] << std::endl;
+    }
+
+    std::cout << std::endl;
+}
+
+// Functions to throw runtime error
+void throwRunTimeError(const std::string &message, unsigned int current, unsigned int core_num)
+{
+    std::cerr << "Runtime error at instruction number " << current << " in core " << core_num << std::endl;
+    std::cerr << message << std::endl;
+    exit(-1);
+}
+
+void throwRunTimeError(const std::string &message, unsigned int core_num)
+{
+    std::cerr << "Runtime error occured in core " << core_num << std::endl;
+    std::cerr << message << std::endl;
+    exit(-1);
+}
+
+// Functions to throw compilation error
+void throwError(const std::string &message, int &lineNum, int &column, unsigned int core_num)
+{
+    std::cerr << "Syntax error: At line " << lineNum << ", column " << column + 1 << " in core " << core_num << std::endl;
+    std::cerr << message << std::endl;
+    exit(-1);
+}
+
+void throwError(const std::string &message, int &lineNum, unsigned int core_num)
+{
+    std::cerr << "Syntax error: At line " << lineNum << " in core " << core_num << std::endl;
+    std::cerr << message << std::endl;
+    exit(-1);
+}
+
+void printOverFlowMessage(std::string &s, unsigned int &current, unsigned int core_num)
+{
+    std::cerr << s << std::endl;
+    std::cerr << "At instruction " << current << " in core " << core_num << std::endl;
+}
+
+void detectOFadd(int a, int b, unsigned int current, unsigned int core_num)
+{
+    std::string msg = "Warning : Overflow detected in addition";
+    if ((b > 0) && (a > INT32_MAX - b))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+    else if ((b < 0) && (a < INT32_MIN - b))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+}
+
+void detectOFmul(int a, int b, unsigned int current, unsigned int core_num)
+{
+    std::string msg = "Warning : Overflow detected in multiplication";
+    if (b == 0)
+    {
+        return;
+    }
+    if ((a == -1) && (b == INT32_MIN))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+    else if ((b == -1) && (a == INT32_MIN))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+    else if (a > INT32_MAX / b)
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+    else if ((a < INT32_MIN / b))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+}
+
+void detectOFsub(int a, int b, unsigned int current, unsigned int core_num)
+{
+    std::string msg = "Warning : Overflow detected in subtraction";
+    if ((b < 0) && (a > INT32_MAX + b))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+    else if ((b > 0) && (a < INT32_MIN + b))
+    {
+        printOverFlowMessage(msg, current, core_num);
+    }
+}
+
+// Function to get the instruction type based on opcode of the instruction
+InstructionType getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num)
+{
+    for (std::pair<InstructionType, int> temp : op_codes)
+    {
+        if (temp.second == opcode)
+        {
+            return temp.first;
+        }
+    }
+    throwRunTimeError("No such instruction", current, core_num);
+    return lw;
 }
 
 void Core::executeJ(std::vector<unsigned int> &params)
@@ -273,6 +592,176 @@ bool Core::execute()
     }
 }
 
+// To check if a char is a whitespace
+bool isSpace(const char &c)
+{
+    return c == ' ' || c == '\t';
+}
+
+// To check if a char is an english alphabet
+bool isAlpha(const char &c)
+{
+    int i = (int)c;
+    return (i > 96 && i < 97 + 26) || (i > 64 && i < 65 + 26);
+}
+
+// To check if a char is an integer
+bool isNum(const char &c)
+{
+    return ((int)c) >= 48 && ((int)c) <= 57;
+}
+
+// Sets the value of i to the next non space char in the string
+void toNextNonSpace(std::string &s, int &i)
+{
+    if (i >= s.length())
+    {
+        return;
+    }
+    while (s.at(i) == ' ' || s.at(i) == '\t')
+    {
+        i++;
+        if (i >= s.length())
+        {
+            return;
+        }
+    }
+}
+
+// Returns the arguments for the instruciton after instruction type is detected
+std::vector<std::string> getTokens(std::string &s, int &i, int &lineNum)
+{
+    std::vector<std::string> res;
+    int state = 0;
+    int pre = i;
+    for (int j = i; j < s.length(); j++)
+    {
+        switch (state)
+        {
+        case 0:
+            if (s.at(j) == ',')
+            {
+                state = 2;
+                res.push_back(s.substr(pre, j - pre));
+            }
+            else if (isSpace(s.at(j)))
+            {
+                state = 1;
+                res.push_back(s.substr(pre, j - pre));
+            }
+            break;
+        case 1:
+            if (s.at(j) == ',')
+            {
+                state = 2;
+            }
+            else if (!isSpace(s.at(j)))
+            {
+                state = 0;
+                pre = j;
+            }
+            break;
+        case 2:
+            if (s.at(j) == ',')
+            {
+                throwError("Invalid input: Not expecting a ','", lineNum, j);
+            }
+            else if (!isSpace(s.at(j)))
+            {
+                state = 0;
+                pre = j;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    if (state == 0)
+    {
+        res.push_back(s.substr(pre));
+    }
+
+    return res;
+}
+
+std::vector<std::string> getLoadSaveTokens(std::string &s, int &i, int &lineNum, unsigned int core_num)
+{
+    std::vector<std::string> res;
+    int j = i;
+    while (!isSpace(s.at(i)) && s.at(i) != ',')
+    {
+        i++;
+        if (i >= s.length())
+        {
+            throwError("Invaid input", lineNum, core_num);
+        }
+    }
+    res.push_back(s.substr(j, i - j));
+    while (!isNum(s.at(i)) && s.at(i) != '-')
+    {
+        i++;
+        if (i >= s.length())
+        {
+            throwError("Invaid input", lineNum, core_num);
+        }
+    }
+    j = i;
+    if (s.at(i) == '-')
+    {
+        i++;
+    }
+    while (isNum(s.at(i)))
+    {
+        i++;
+        if (i >= s.length())
+        {
+            throwError("Invaid input", lineNum, core_num);
+        }
+    }
+    res.push_back(s.substr(j, i - j));
+    while (s.at(i) != '(')
+    {
+        if (!isSpace(s.at(i)))
+        {
+            throwError("Invaid input", lineNum, i, core_num);
+        }
+        i++;
+        if (i >= s.length())
+        {
+            throwError("Invaid input", lineNum, core_num);
+        }
+    }
+    i++;
+    toNextNonSpace(s, i);
+    if (i >= s.length())
+    {
+        throwError("Invalid input", lineNum, core_num);
+    }
+    j = i;
+    while (!isSpace(s.at(i)) && s.at(i) != ')')
+    {
+        i++;
+        if (i >= s.length())
+        {
+            throwError("Invalid input", lineNum, core_num);
+        }
+    }
+    res.push_back(s.substr(j, i - j));
+    toNextNonSpace(s, i);
+    if (s.at(i) != ')')
+    {
+        throwError("Invalid input: expected a \')\'", lineNum, i, core_num);
+    }
+    i++;
+    toNextNonSpace(s, i);
+    if (i < s.length())
+    {
+        throwError("Invalid input", lineNum, core_num);
+    }
+    return res;
+}
+
+// Parse function to parse the text
 void Core::parse(std::string s, int &lineNum)
 {
     std::string arg1;
