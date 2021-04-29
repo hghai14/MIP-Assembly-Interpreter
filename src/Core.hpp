@@ -1,34 +1,9 @@
-#ifndef A5
-#define A5
+#ifndef CORE
+#define CORE
 
-#include <iostream>
-#include <cstring>
-#include <map>
-#include <vector>
-#include <algorithm>
-#include <set>
-#include <cmath>
-#include <fstream>
+#include "main.hpp"
+#include "helper.hpp"
 
-extern bool optimize;
-
-// Memory array, 4 bytes at a time
-extern unsigned int memory[262144];
-
-// Types of instructions
-enum InstructionType
-{
-    jump,
-    add,
-    sub,
-    mul,
-    beq,
-    bne,
-    slt,
-    lw,
-    sw,
-    addi
-};
 
 class Core
 {
@@ -87,12 +62,6 @@ public:
 
 };
 
-class DRAM
-{
-public:
-    static int ROW_ACCESS_DELAY;
-    static int COL_ACCESS_DELAY;
-};
 
 
 #endif
