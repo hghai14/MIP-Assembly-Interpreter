@@ -1,7 +1,5 @@
 #include "a5.hpp"
 
-bool optimize = true;
-
 // Memory array, 4 bytes at a time
 unsigned int memory[262144];
 
@@ -96,15 +94,22 @@ std::map<int, std::string> Core::num_to_reg = {
 
 Core::Core(std::string path, unsigned int core_num)
 {
+    this->active = true;
     this->core_num = core_num;
     this->base_address = core_num * (((unsigned int)pow(2, 18)) / n);
-    this->curParsePointer = this->base_address;
+    this->curParsePointer = 0;
     instream.open(path, std::ofstream::in);
     if (!instream)
     {
         std::cerr << "Error: file \"" << path << "\" could not be opened" << std::endl;
         exit(-1);
     }
+
+    writeBusy = false;
+    pendingRequests = 0;
+
+    memset(busyReg, 0, sizeof(busyReg));
+    memset(waitReg, 0, sizeof(waitReg));
 }
 
 int main(int argc, char *argv[])
@@ -125,14 +130,6 @@ int main(int argc, char *argv[])
 
     inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
 
-    optimize = true;
-
-    if (((unsigned int)pow(2, 18)) % n != 0)
-    {
-        std::cout << "Invalid number of cores given: Number of cores must be in power of 2";
-        exit(-1);
-    }
-
     Core *cores[n];
 
     std::string temp;
@@ -142,27 +139,54 @@ int main(int argc, char *argv[])
     {
         std::string path;
         getline(inFile, path);
-        cores[i] = new Core(path, (unsigned int)i);
-        cores[i]->compile();
-        cores[i]->setup();
+        cores[i] = new Core(path, (unsigned int) i);
+        try
+        {
+            cores[i]->compile();
+            cores[i]->setup();
+        }catch (char* exception)
+        {
+            cores[i]->active = false;
+        }
     }
 
     while (true)
     {
         bool f = false;
+
         for (unsigned int i = 0; i < n; i++)
         {
-            f = f | cores[i]->execute();
+            try
+            {
+                f = f | cores[i]->execute();
+            }catch (char* exception)
+            {
+                cores[i]->active = false;
+            }
         }
         if (!f)
         {
             break;
         }
-        std::cout << totalCycles << std::endl;
+
+        DRAM::execute();
+
+        std::cout << "Cycle: " << totalCycles+1 << std::endl;
+
+        for (unsigned int i = 0; i < n; i++)
+        {
+            std::cout << "Core " << i << ": " << cores[i]->message << std::endl;
+        } 
+
+        std::cout << "DRAM: " << DRAM::message << std::endl;
+
+        totalCycles++;
     }
 
     for (int i = 0; i < n; i++)
     {
+        std::cout << "Core " << i << ": " << std::endl;
+        cores[i]->printData();
         delete cores[i];
     }
 
@@ -214,14 +238,14 @@ void throwRunTimeError(const std::string &message, unsigned int current, unsigne
 {
     std::cerr << "Runtime error at instruction number " << current << " in core " << core_num << std::endl;
     std::cerr << message << std::endl;
-    exit(-1);
+    throw "exception";
 }
 
 void throwRunTimeError(const std::string &message, unsigned int core_num)
 {
     std::cerr << "Runtime error occured in core " << core_num << std::endl;
     std::cerr << message << std::endl;
-    exit(-1);
+    throw "exception";
 }
 
 // Functions to throw compilation error
@@ -229,14 +253,14 @@ void throwError(const std::string &message, int &lineNum, int &column, unsigned 
 {
     std::cerr << "Syntax error: At line " << lineNum << ", column " << column + 1 << " in core " << core_num << std::endl;
     std::cerr << message << std::endl;
-    exit(-1);
+    throw "exception";
 }
 
 void throwError(const std::string &message, int &lineNum, unsigned int core_num)
 {
     std::cerr << "Syntax error: At line " << lineNum << " in core " << core_num << std::endl;
     std::cerr << message << std::endl;
-    exit(-1);
+    throw "exception";
 }
 
 void printOverFlowMessage(std::string &s, unsigned int &current, unsigned int core_num)
@@ -373,9 +397,9 @@ void Core::setup()
 // Function to execute the program
 bool Core::execute()
 {
+    message = "";
     if (current < endCommand)
     {
-        // end
         unsigned int instr = instruction_memory[current];
         unsigned int opcode = instr >> 26;
 
@@ -386,6 +410,10 @@ bool Core::execute()
 
         register_file[0] = (unsigned int)0;
 
+        return true;
+    }
+    else if (pendingRequests > 0)
+    {
         return true;
     }
     else

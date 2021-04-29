@@ -10,8 +10,6 @@
 #include <cmath>
 #include <fstream>
 
-extern bool optimize;
-
 // Memory array, 4 bytes at a time
 extern unsigned int memory[262144];
 
@@ -55,7 +53,6 @@ class Core
 
 private:
     std::ifstream instream;
-    std::string message;
    
     std::map<InstructionType, long long int> instruction_count = {
         std::make_pair(jump, 0),
@@ -77,6 +74,17 @@ private:
     static std::map<int, std::string> num_to_reg;
 
 public:
+
+    // Write port is busy or not
+    bool writeBusy;
+
+    int pendingRequests;
+
+    bool busyReg[32];
+    bool waitReg[32];
+
+    bool active;
+    std::string message;
 
     unsigned int core_num;
 
@@ -128,6 +136,20 @@ public:
     void printRegisterFile(unsigned int register_file[], unsigned int core_num);
     InstructionType getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num);
 
+    void printData();
+
+};
+
+class Request
+{
+public:
+    Core* core;
+    bool load;
+    unsigned int address;
+    int reg;
+
+    Request(Core* req, bool load, unsigned int address, int reg);
+
 };
 
 class DRAM
@@ -135,6 +157,37 @@ class DRAM
 public:
     static int ROW_ACCESS_DELAY;
     static int COL_ACCESS_DELAY;
+
+    static std::string message;
+
+    static int writeLeft;
+    static int rowLeft;
+    static int colLeft;
+
+    static int pendingTotal;
+
+    static int mrmWaitLeft;
+
+    static Request *quBuf[64];
+
+    // Request currently processed by DRAM, else nullptr
+    static Request* activeRequest;
+
+    // true when DRAM busy
+    static bool busy;
+
+    // Index where new request will be added
+    static int cur;
+
+    // Add request to buffer
+    static bool addRequest(Request* req);
+    
+    // Called on every cycle
+    static bool execute();
+
+    // Returns the next request to be processed, called only when, DRAM not busy
+    static Request* getNextRequest();
+
 };
 
 
