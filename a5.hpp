@@ -30,11 +30,51 @@ enum InstructionType
     addi
 };
 
+std::string decToHex(unsigned int n);
+
+void printRegisterFile(unsigned int register_file[], unsigned int core_num);
+
+void throwRunTimeError(const std::string &message, unsigned int current, unsigned int core_num);
+
+void throwRunTimeError(const std::string &message, unsigned int core_num);
+
+void throwError(const std::string &message, int &lineNum, int &column, unsigned int core_num);
+
+void throwError(const std::string &message, int &lineNum, unsigned int core_num);
+
+void printOverFlowMessage(std::string &s, unsigned int &current, unsigned int core_num);
+
+void detectOFadd(int a, int b, unsigned int current, unsigned int core_num);
+
+void detectOFmul(int a, int b, unsigned int current, unsigned int core_num);
+
+void detectOFsub(int a, int b, unsigned int current, unsigned int core_num);
+
 class Core
 {
 
 private:
     std::ifstream instream;
+    std::string message;
+   
+    std::map<InstructionType, long long int> instruction_count = {
+        std::make_pair(jump, 0),
+        std::make_pair(add, 0),
+        std::make_pair(sub, 0),
+        std::make_pair(mul, 0),
+        std::make_pair(slt, 0),
+        std::make_pair(addi, 0),
+        std::make_pair(bne, 0),
+        std::make_pair(beq, 0),
+        std::make_pair(lw, 0),
+        std::make_pair(sw, 0),
+    };
+
+    static std::string instruction_type_string[10];
+    static std::set<std::string> reserved_words;
+    static std::map<InstructionType, int> op_codes;
+    static std::map<std::string, int> register_map;
+    static std::map<int, std::string> num_to_reg;
 
 public:
 
@@ -84,6 +124,9 @@ public:
     void parseLw(std::vector<std::string> &tokens, int &lineNum);
     void parseSw(std::vector<std::string> &tokens, int &lineNum);
     void parseAddi(std::vector<std::string> &tokens, int &lineNum);
+
+    void printRegisterFile(unsigned int register_file[], unsigned int core_num);
+    InstructionType getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num);
 
 };
 
