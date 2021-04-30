@@ -48,12 +48,25 @@ void detectOFmul(int a, int b, unsigned int current, unsigned int core_num);
 
 void detectOFsub(int a, int b, unsigned int current, unsigned int core_num);
 
+class Request
+{
+public:
+    bool load;
+    unsigned int address;
+    // Save -> Word; Load -> Reg
+    unsigned int reg;
+
+    unsigned int row;
+
+    Request(bool load, unsigned int address, unsigned int reg);
+};
+
 class Core
 {
 
 private:
     std::ifstream instream;
-   
+
     std::map<InstructionType, long long int> instruction_count = {
         std::make_pair(jump, 0),
         std::make_pair(add, 0),
@@ -74,29 +87,61 @@ private:
     static std::map<int, std::string> num_to_reg;
 
 public:
-
     // Write port is busy or not
     bool writeBusy;
-
-    int pendingRequests;
-
-    bool busyReg[32];
+    
+    // To check if the register is waiting or not
     bool waitReg[32];
 
+    // To check if the memory is waiting
+    unsigned int waitMem;
+
+    // Load buffer
+    Request *loadQu[32];
+
+    // Save buffer
+    Request *saveQu[64];
+
+    // Best request,if  bestReq[0] = 1 then load else save, bestReq[1] -> address of request
+    int bestReq[2];
+
+    // Number of pending requests
+    int pendingRequests;
+
+    // Processor is active or not, inactive in case of compilation or execution error
     bool active;
+
+    // Message to print cycle info
     std::string message;
 
+    // To check the core number
     unsigned int core_num;
 
+    // Base address of the memory allocated to the core
     unsigned int base_address;
 
+    // Register file
     unsigned int register_file[32];
+
+    // Instruction memory
     unsigned int instruction_memory[1024];
+    
+    // For parsing
     unsigned int curParsePointer;
-    unsigned int endCommand; // Last Instruciton address
-    unsigned int current; // PC
+
+    // Last Instruciton address
+    unsigned int endCommand;
+    
+    // PC
+    unsigned int current;
+
+    // Branches
     std::map<std::string, unsigned int> branches;
+
+    // Labels
     std::map<unsigned int, std::string> labels;
+
+    // Parsing data
     int label_ptr;
 
     Core(std::string path, unsigned int core_num);
@@ -136,59 +181,69 @@ public:
     void printRegisterFile(unsigned int register_file[], unsigned int core_num);
     InstructionType getInstructionType(unsigned int opcode, unsigned int &current, unsigned int core_num);
 
+    // Print execution data after completion of execution
     void printData();
 
+    // Add memory request to load or save buffer
+    void addRequest(Request *req);
+
+    // Get the next best request
+    Request *getNextRequest();
+
+    // Set the best request
+    void setBestRequest();
 };
 
-class Request
+struct DRAM_Req
 {
-public:
-    Core* core;
-    bool load;
-    unsigned int address;
-    int reg;
-
-    Request(Core* req, bool load, unsigned int address, int reg);
-
+    Core *core;
+    Request *req;
+    bool rowBenefit;
+    bool waitBenefit;
 };
 
 class DRAM
 {
 public:
+    // Memory
+    static unsigned int memory[262144];
+    
+    // Cores
+    static std::vector<Core *> cores;
+
+    // Delays
     static int ROW_ACCESS_DELAY;
     static int COL_ACCESS_DELAY;
 
+    // Messages
     static std::string message;
+    static std::string mrm_message;
 
+    // Currently active row
+    static int activeRow;
+    
+    // Cycles left for DRAM function
     static int writeLeft;
     static int rowLeft;
     static int colLeft;
 
-    static int pendingTotal;
-
+    // Number of cycles left for mrm
     static int mrmWaitLeft;
 
-    static Request *quBuf[64];
-
     // Request currently processed by DRAM, else nullptr
-    static Request* activeRequest;
+    static DRAM_Req *activeRequest;
 
     // true when DRAM busy
     static bool busy;
 
-    // Index where new request will be added
-    static int cur;
-
-    // Add request to buffer
-    static bool addRequest(Request* req);
-    
     // Called on every cycle
     static bool execute();
 
+    // Process DRAM execution
+    static void process();
+
     // Returns the next request to be processed, called only when, DRAM not busy
-    static Request* getNextRequest();
-
+    static DRAM_Req *getNextRequest();
 };
-
 
 #endif
