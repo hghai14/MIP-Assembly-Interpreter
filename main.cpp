@@ -1,11 +1,10 @@
 #include "a5.hpp"
 
 // Memory array, 4 bytes at a time
-unsigned int memory[262144];
-
-long long int totalCycles = 0;
-
+unsigned int DRAM::memory[262144];
 int n;
+long long int totalCycles = 0;
+std::vector<Core*> DRAM::cores;
 
 std::string Core::instruction_type_string[] = {"j", "add", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
 
@@ -106,10 +105,12 @@ Core::Core(std::string path, unsigned int core_num)
     }
 
     writeBusy = false;
-    pendingRequests = 0;
-
-    memset(busyReg, 0, sizeof(busyReg));
     memset(waitReg, 0, sizeof(waitReg));
+    waitMem = -1;
+    memset(loadQu, 0, sizeof(loadQu));
+    memset(saveQu, 0, sizeof(saveQu));
+    bestReq[0] = bestReq[1] = -1;
+    pendingRequests = 0;
 }
 
 int main(int argc, char *argv[])
@@ -130,7 +131,6 @@ int main(int argc, char *argv[])
 
     inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
 
-    Core *cores[n];
 
     std::string temp;
     getline(inFile, temp);
@@ -139,14 +139,14 @@ int main(int argc, char *argv[])
     {
         std::string path;
         getline(inFile, path);
-        cores[i] = new Core(path, (unsigned int) i);
+        DRAM::cores.push_back(new Core(path, (unsigned int) i));
         try
         {
-            cores[i]->compile();
-            cores[i]->setup();
+            DRAM::cores[i]->compile();
+            DRAM::cores[i]->setup();
         }catch (char* exception)
         {
-            cores[i]->active = false;
+            DRAM::cores[i]->active = false;
         }
     }
 
@@ -158,10 +158,10 @@ int main(int argc, char *argv[])
         {
             try
             {
-                f = f | cores[i]->execute();
+                f = f | DRAM::cores[i]->execute();
             }catch (char* exception)
             {
-                cores[i]->active = false;
+                DRAM::cores[i]->active = false;
             }
         }
         if (!f)
@@ -175,7 +175,7 @@ int main(int argc, char *argv[])
 
         for (unsigned int i = 0; i < n; i++)
         {
-            std::cout << "Core " << i << ": " << cores[i]->message << std::endl;
+            std::cout << "Core " << i << ": " << DRAM::cores[i]->message << std::endl;
         } 
 
         std::cout << "DRAM: " << DRAM::message << std::endl;
@@ -186,8 +186,8 @@ int main(int argc, char *argv[])
     for (int i = 0; i < n; i++)
     {
         std::cout << "Core " << i << ": " << std::endl;
-        cores[i]->printData();
-        delete cores[i];
+        DRAM::cores[i]->printData();
+        delete DRAM::cores[i];
     }
 
     return 0;
@@ -397,6 +397,7 @@ void Core::setup()
 // Function to execute the program
 bool Core::execute()
 {
+    setBestRequest();
     message = "";
     if (current < endCommand)
     {
