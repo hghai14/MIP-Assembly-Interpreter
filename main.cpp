@@ -2,8 +2,14 @@
 
 // Memory array, 4 bytes at a time
 unsigned int DRAM::memory[262144];
+
+// Total number of cores
 int n;
+
+// Count of total cycles
 long long int totalCycles = 0;
+
+// Vector of number of cores
 std::vector<Core*> DRAM::cores;
 
 std::string Core::instruction_type_string[] = {"j", "add", "sub", "mul", "beq", "bne", "slt", "lw", "sw", "addi"};
@@ -93,10 +99,19 @@ std::map<int, std::string> Core::num_to_reg = {
 
 Core::Core(std::string path, unsigned int core_num)
 {
+    // Inactive when any parse or run time error
     this->active = true;
+
+    // Core number
     this->core_num = core_num;
-    this->base_address = core_num * (((unsigned int)pow(2, 18)) / n);
+
+    // Base address of the memory allocated to this core
+    this->base_address = core_num * (((unsigned int)pow(2, 18)) / n) * 4;
+
+    // Parse pointer to allocate memory
     this->curParsePointer = 0;
+
+    // Input stream from file
     instream.open(path, std::ofstream::in);
     if (!instream)
     {
@@ -104,88 +119,126 @@ Core::Core(std::string path, unsigned int core_num)
         exit(-1);
     }
 
+    // Boolean variable that asserts whether register file is busy or not
     writeBusy = false;
+
+    // Reseting wait buffer of the memory manager
     memset(waitReg, 0, sizeof(waitReg));
+
+    // Memory address waiting
     waitMem = -1;
+
+    // Reseting load request qu
     memset(loadQu, 0, sizeof(loadQu));
+
+    // Reseting save request queue
     memset(saveQu, 0, sizeof(saveQu));
+
+    // Initializing best request to -1
     bestReq[0] = bestReq[1] = -1;
+
+    // Count for number of pending requests
     pendingRequests = 0;
 }
 
 int main(int argc, char *argv[])
 {
+    // Check whether sufficient arguments given or not
     if (argc < 2)
     {
         std::cout << "Please give input file path" << std::endl;
         exit(-1);
     }
 
-    std::ifstream inFile(argv[1], std::ofstream::in);
+    freopen("out.txt", "w", stdout);
 
+    // Read stream for input file
+    std::ifstream inFile(argv[1], std::ofstream::in);
     if (!inFile)
     {
         std::cerr << "Input correct file path" << std::endl;
         exit(-1);
     }
 
+    // Reading number of cores and row and column access delay
     inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
 
-
+    // Flushing the buffer to next line
     std::string temp;
     getline(inFile, temp);
 
+    // Loop to read file paths and create objects of Core class
     for (int i = 0; i < n; i++)
     {
+        // Input file path
         std::string path;
         getline(inFile, path);
+
+        // Push the core in the vector
         DRAM::cores.push_back(new Core(path, (unsigned int) i));
+
+        // Try compiling the core
         try
         {
+            // Compile the core and setup its program counter to main branch
             DRAM::cores[i]->compile();
             DRAM::cores[i]->setup();
         }catch (char* exception)
         {
+            // In case of error, inactive the core
             DRAM::cores[i]->active = false;
         }
     }
 
+    // While the program is running, execute all the cores and increment a cycle everytime
     while (true)
     {
+        // Increament the cycle count
+        totalCycles++;
+
+        // Bool var to detect if there exists and active core
         bool f = false;
 
+        // Loop through all the cores
         for (unsigned int i = 0; i < n; i++)
         {
+            // Try to execute the instruction at current program counter of the core
             try
             {
+                // To detect if the core is active or not
                 f = f | DRAM::cores[i]->execute();
             }catch (char* exception)
             {
+                // In case of error, deactivate the core
                 DRAM::cores[i]->active = false;
             }
         }
+
+        f = f | DRAM::execute();
+
+        // If all the cores and DRAM are inactive then break
         if (!f)
         {
             break;
         }
 
-        DRAM::execute();
+        // Print the cycle status
+        std::cout << "Cycle: " << totalCycles << std::endl;
 
-        std::cout << "Cycle: " << totalCycles+1 << std::endl;
-
+        // Loop through each core and print the message
         for (unsigned int i = 0; i < n; i++)
         {
             std::cout << "Core " << i << ": " << DRAM::cores[i]->message << std::endl;
         } 
 
-        std::cout << "DRAM: " << DRAM::message << std::endl;
-
-        totalCycles++;
+        // Print the DRAM message seprately
+        std::cout << "DRAM: " << DRAM::message << std::endl << std::endl;
     }
 
+    // Print the stats of each core and free the space in heap (Good practice)
     for (int i = 0; i < n; i++)
     {
-        std::cout << "Core " << i << ": " << std::endl;
+        std::cout << "Core " << i << " process data: " << std::endl;
         DRAM::cores[i]->printData();
         delete DRAM::cores[i];
     }
@@ -269,6 +322,7 @@ void printOverFlowMessage(std::string &s, unsigned int &current, unsigned int co
     std::cerr << "At instruction " << current << " in core " << core_num << std::endl;
 }
 
+// Funciton to detect overflow in addition
 void detectOFadd(int a, int b, unsigned int current, unsigned int core_num)
 {
     std::string msg = "Warning : Overflow detected in addition";
@@ -282,6 +336,7 @@ void detectOFadd(int a, int b, unsigned int current, unsigned int core_num)
     }
 }
 
+// Function to detect overlow in multiplication
 void detectOFmul(int a, int b, unsigned int current, unsigned int core_num)
 {
     std::string msg = "Warning : Overflow detected in multiplication";
@@ -307,6 +362,7 @@ void detectOFmul(int a, int b, unsigned int current, unsigned int core_num)
     }
 }
 
+// Funciton to detect subtraction
 void detectOFsub(int a, int b, unsigned int current, unsigned int core_num)
 {
     std::string msg = "Warning : Overflow detected in subtraction";
@@ -337,7 +393,6 @@ InstructionType Core::getInstructionType(unsigned int opcode, unsigned int &curr
 // Get parameters for the instruction from the instruction stored as 32 bit in the memory
 std::vector<unsigned int> getParams(InstructionType i_type, unsigned int &instr, unsigned int core_num)
 {
-
     if (i_type == jump)
     {
         return std::vector<unsigned int>{instr & (unsigned int)67108863};
@@ -381,6 +436,7 @@ std::vector<unsigned int> getParams(InstructionType i_type, unsigned int &instr,
     return std::vector<unsigned int>{};
 }
 
+// Setup function of the core, sets the program counter to the main branch
 void Core::setup()
 {
     if (branches.find("main") == branches.end())
@@ -397,31 +453,55 @@ void Core::setup()
 // Function to execute the program
 bool Core::execute()
 {
-    setBestRequest();
-    message = "";
+    // Sets the best request at the memory manager buffer
+    if (pendingRequests > 0)
+    {
+        setBestRequest();
+    }
+
+    // Initialize the message to null
+
+    // If the program counter is less than the last instruction then procesd
     if (current < endCommand)
     {
+        message = "Stalled";
+        // Decode instruction into op code and instruction
         unsigned int instr = instruction_memory[current];
         unsigned int opcode = instr >> 26;
 
+        // Get instruction type from op code
         InstructionType i_type = getInstructionType(opcode, current, core_num);
 
+        // Get params from the instruction
         std::vector<unsigned int> params = getParams(i_type, instr, core_num);
+        
+        // Execute command based on intruction type and parameters
         executeCommand(i_type, params);
 
+        // Hard wire register zero to 0
         register_file[0] = (unsigned int)0;
 
         return true;
     }
     else if (pendingRequests > 0)
     {
+        message = "Stalled";
+        // Else if any request pending then proceed
         return true;
     }
     else
     {
+        message = "Finshed";
+        // Else return false because no work to do
         return false;
     }
 }
+
+// ********************************************************
+// ********************************************************
+// ****************** PARSING CODE BELOW ******************
+// ********************************************************
+// ********************************************************
 
 // To check if a char is a whitespace
 bool isSpace(const char &c)
@@ -646,6 +726,7 @@ void Core::parse(std::string s, int &lineNum)
         toNextNonSpace(s, i);
         if (i >= s.length())
         {
+            lineNum++;
             return;
         }
         if (!isAlpha(s.at(i)))
@@ -733,20 +814,27 @@ void Core::parse(std::string s, int &lineNum)
 // Function to compile the program
 void Core::compile()
 {
-
+    // Set the parse pointer to 0
     curParsePointer = 0;
+    
+    // Current line number to 1
     int lineNum = 1;
-
+    
+    // String buffer for input
     std::string s;
 
+    // Loop till any line available
     while (std::getline(instream, s))
     {
+        // Parse the line
         parse(s, lineNum);
     }
 
+    // Once the parsing done, set the endCommand pointer
     endCommand = curParsePointer;
 
-    register_file[register_map["sp"]] = (unsigned int)pow(2, 20);
+    // Set the stack pointer the base address of the memory
+    register_file[register_map["sp"]] = base_address;
 }
 
 // Function to parse the instruction and store it in the memory
