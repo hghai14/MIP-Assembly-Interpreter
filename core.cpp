@@ -335,7 +335,6 @@ void Core::executeLw(std::vector<unsigned int> &params)
     message = "Load word instruction generated for DRAM from memory address " +
                 std::to_string(address - base_address) +
                 " to the register " + num_to_reg[params[0]];
-    instruction_count[lw]++;
 
     waitReg[params[2]] = false;
 }
@@ -376,7 +375,6 @@ void Core::executeSw(std::vector<unsigned int> &params)
     message = "Save word instruction generated for DRAM to memory address " +
                 std::to_string(address - base_address) +
                 " from the register " + num_to_reg[params[0]];
-    instruction_count[sw]++;
 
     waitReg[params[0]] = waitReg[params[2]] = false;
 }

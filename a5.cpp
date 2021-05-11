@@ -52,8 +52,7 @@ void DRAM::process()
     else
     {
         message = "Save request to adrress " + std::to_string(activeRequest->req->address) + " of value " + 
-                    std::to_string(activeRequest->req->reg) + 
-                    " from register " + Core::num_to_reg[activeRequest->req->reg];
+                    std::to_string(activeRequest->req->reg);
     }
 
     message += ": ";
@@ -93,11 +92,13 @@ void DRAM::process()
         {
             c->register_file[r->reg] = memory[r->address / 4];
             c->loadQu[r->reg] = nullptr;
+            c->instruction_count[lw]++;
         }
         else
         {
             memory[r->address / 4] = r->reg;
             c->saveQu[r->address % Core::saveQuBufferLength] = nullptr;
+            c->instruction_count[sw]++;
         }
 
         delete r;
@@ -115,11 +116,12 @@ void DRAM::process()
 bool DRAM::execute()
 {
     message = "Free";
+
+    // Get the next best request
+    activeRequest = getNextRequest();
+    
     if (!busy)
     {
-        // Get the next best request
-        activeRequest = getNextRequest();
-
         if (activeRequest == nullptr)
         {
             return false;
@@ -142,8 +144,10 @@ bool DRAM::execute()
         // Set busy true
         busy = true;
     }
-
-    process();
+    else
+    {
+        process();
+    }
 
     return true;
 }

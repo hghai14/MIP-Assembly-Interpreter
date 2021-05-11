@@ -160,8 +160,10 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    int m;
+
     // Reading number of cores and row and column access delay
-    inFile >> n >> DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
+    inFile >> n >> m >>  DRAM::ROW_ACCESS_DELAY >> DRAM::COL_ACCESS_DELAY;
 
     // Flushing the buffer to next line
     std::string temp;
@@ -191,13 +193,15 @@ int main(int argc, char *argv[])
     }
 
     // While the program is running, execute all the cores and increment a cycle everytime
-    while (true)
+    while (totalCycles < m)
     {
         // Increament the cycle count
         totalCycles++;
 
         // Bool var to detect if there exists and active core
         bool f = false;
+
+        f = f | DRAM::execute();
 
         // Loop through all the cores
         for (unsigned int i = 0; i < n; i++)
@@ -213,8 +217,6 @@ int main(int argc, char *argv[])
                 DRAM::cores[i]->active = false;
             }
         }
-
-        f = f | DRAM::execute();
 
         // If all the cores and DRAM are inactive then break
         if (!f)
@@ -235,13 +237,24 @@ int main(int argc, char *argv[])
         std::cout << "DRAM: " << DRAM::message << std::endl << std::endl;
     }
 
+    int totalIntructions = 0;
+
     // Print the stats of each core and free the space in heap (Good practice)
     for (int i = 0; i < n; i++)
     {
         std::cout << "Core " << i << " process data: " << std::endl;
         DRAM::cores[i]->printData();
+
+        for (std::pair<InstructionType, int> p: DRAM::cores[i]->instruction_count)
+        {
+            totalIntructions += p.second;
+        }
+
         delete DRAM::cores[i];
     }
+
+    // Print throughput
+    std::cout << std::endl << "Throughput: " << (float) totalIntructions / m << " Instructions per cycle" << std::endl;
 
     return 0;
 }

@@ -67,6 +67,13 @@ class Core
 private:
     std::ifstream instream;
 
+    static std::string instruction_type_string[10];
+    static std::set<std::string> reserved_words;
+    static std::map<InstructionType, int> op_codes;
+    static std::map<std::string, int> register_map;
+
+public:
+
     std::map<InstructionType, long long int> instruction_count = {
         std::make_pair(jump, 0),
         std::make_pair(add, 0),
@@ -79,13 +86,6 @@ private:
         std::make_pair(lw, 0),
         std::make_pair(sw, 0),
     };
-
-    static std::string instruction_type_string[10];
-    static std::set<std::string> reserved_words;
-    static std::map<InstructionType, int> op_codes;
-    static std::map<std::string, int> register_map;
-
-public:
 
     static std::map<int, std::string> num_to_reg;
 
