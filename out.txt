@@ -1,0 +1,3256 @@
+Cycle: 1
+Core 0: Add immediate instruction executed, t0 = t0 + 100 = 100
+Core 1: Add immediate instruction executed, s0 = zero + 0 = 0
+Core 2: Add immediate instruction executed, t0 = t0 + 960 = 960
+Core 3: Add immediate instruction executed, s1 = zero + 5 = 5
+Core 4: Add immediate instruction executed, t0 = zero + 10 = 10
+Core 5: Add immediate instruction executed, s0 = zero + 0 = 0
+Core 6: Add immediate instruction executed, s0 = zero + 0 = 0
+DRAM: Free
+
+Cycle: 2
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 1000 to the register t0
+Core 2: Add immediate instruction executed, t1 = t1 + 100 = 100
+Core 3: Add immediate instruction executed, s0 = zero + 0 = 0
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 1000 to the register t0
+Core 6: Load word instruction generated for DRAM from memory address 1000 to the register t0
+DRAM: Free
+
+Cycle: 3
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s1 = zero + 0 = 0
+Core 2: Save word instruction generated for DRAM to memory address 1024 from the register t0
+Core 3: Load word instruction generated for DRAM from memory address 1000 to the register t0
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s1 = zero + 0 = 0
+Core 6: Add immediate instruction executed, s1 = zero + 0 = 0
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 4
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 3000 to the register t1
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 4
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 3000 to the register t1
+Core 6: Load word instruction generated for DRAM from memory address 3000 to the register t1
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 5
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s0 = s0 + 4 = 4
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 3004 to the register t1
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s0 = s0 + 4 = 4
+Core 6: Add immediate instruction executed, s0 = s0 + 4 = 4
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 6
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 1004 to the register t2
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 8
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 1004 to the register t2
+Core 6: Load word instruction generated for DRAM from memory address 1004 to the register t2
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 7
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s1 = s1 + 4 = 4
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1008 to the register t2
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s1 = s1 + 4 = 4
+Core 6: Add immediate instruction executed, s1 = s1 + 4 = 4
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 8
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 3004 to the register t3
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 12
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 3004 to the register t3
+Core 6: Load word instruction generated for DRAM from memory address 3004 to the register t3
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 9
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s0 = s0 + 0 = 4
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 3012 to the register t3
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s0 = s0 + 0 = 4
+Core 6: Add immediate instruction executed, s0 = s0 + 0 = 4
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 10
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 1012 to the register t4
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 16
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 1012 to the register t4
+Core 6: Load word instruction generated for DRAM from memory address 1012 to the register t4
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 11
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s1 = s1 + 4 = 8
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1016 to the register t4
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s1 = s1 + 4 = 8
+Core 6: Add immediate instruction executed, s1 = s1 + 4 = 8
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 12
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 3008 to the register t5
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 20
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 3008 to the register t5
+Core 6: Load word instruction generated for DRAM from memory address 3008 to the register t5
+DRAM: Load request to register t0 from address 899776: Row 878 access --- Core 6
+
+Cycle: 13
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s0 = s0 + 8 = 12
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 3020 to the register t5
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s0 = s0 + 8 = 12
+Core 6: Add immediate instruction executed, s0 = s0 + 8 = 12
+DRAM: Load request to register t0 from address 899776: Column 704 access --- Core 6
+
+Cycle: 14
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 1012 to the register t6
+Core 2: Stalled
+Core 3: Add immediate instruction executed, s0 = s0 + 4 = 24
+Core 4: Finshed
+Core 5: Add immediate instruction executed, t8 = s0 + 0 = 12
+Core 6: Stalled
+DRAM: Load request to register t0 from address 899776: Column 704 access --- Core 6
+
+Cycle: 15
+Core 0: Finshed
+Core 1: Add immediate instruction executed, s1 = s1 + 0 = 8
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1024 to the register t6
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 1012 to the register t6
+Core 6: Add immediate instruction executed, t0 = s0 + 0 = 12
+DRAM: Load request to register t4 from address 899788: Column 716 access --- Core 6
+
+Cycle: 16
+Core 0: Finshed
+Core 1: Load word instruction generated for DRAM from memory address 3012 to the register t7
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 3024 to the register t7
+Core 4: Finshed
+Core 5: Add immediate instruction executed, s1 = s1 + 0 = 8
+Core 6: Load word instruction generated for DRAM from memory address 1012 to the register t6
+DRAM: Load request to register t4 from address 899788: Column 716 access --- Core 6
+
+Cycle: 17
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1024 to the register t8
+Core 4: Finshed
+Core 5: Load word instruction generated for DRAM from memory address 3012 to the register t7
+Core 6: Add immediate instruction executed, s1 = s1 + 0 = 8
+DRAM: Load request to register t6 from address 899788: Column 716 access --- Core 6
+
+Cycle: 18
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 3024 to the register t9
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Load word instruction generated for DRAM from memory address 3012 to the register t7
+DRAM: Load request to register t6 from address 899788: Column 716 access --- Core 6
+
+Cycle: 19
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1024 to the register t0
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t2 from address 899780: Column 708 access --- Core 6
+
+Cycle: 20
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Load word instruction generated for DRAM from memory address 1024 to the register t1
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t2 from address 899780: Column 708 access --- Core 6
+
+Cycle: 21
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 22
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 23
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 24
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 25
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 26
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 27
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 28
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 29
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 30
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 878 writeback --- Core 6
+
+Cycle: 31
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 32
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 33
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 34
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 35
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 36
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 37
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 38
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 39
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 40
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Row 880 access --- Core 6
+
+Cycle: 41
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Column 668 access --- Core 6
+
+Cycle: 42
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t7 from address 901788: Column 668 access --- Core 6
+
+Cycle: 43
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t5 from address 901784: Column 664 access --- Core 6
+
+Cycle: 44
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t5 from address 901784: Column 664 access --- Core 6
+
+Cycle: 45
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t3 from address 901780: Column 660 access --- Core 6
+
+Cycle: 46
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t3 from address 901780: Column 660 access --- Core 6
+
+Cycle: 47
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t1 from address 901776: Column 656 access --- Core 6
+
+Cycle: 48
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Stalled
+DRAM: Load request to register t1 from address 901776: Column 656 access --- Core 6
+
+Cycle: 49
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 50
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 51
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 52
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 53
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 54
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 55
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 56
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 57
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 58
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 880 writeback --- Core 5
+
+Cycle: 59
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 60
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 61
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 62
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 63
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 64
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 65
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 66
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 67
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 68
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Row 734 access --- Core 5
+
+Cycle: 69
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Column 376 access --- Core 5
+
+Cycle: 70
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t7 from address 751992: Column 376 access --- Core 5
+
+Cycle: 71
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t5 from address 751988: Column 372 access --- Core 5
+
+Cycle: 72
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t5 from address 751988: Column 372 access --- Core 5
+
+Cycle: 73
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t3 from address 751984: Column 368 access --- Core 5
+
+Cycle: 74
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t3 from address 751984: Column 368 access --- Core 5
+
+Cycle: 75
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t1 from address 751980: Column 364 access --- Core 5
+
+Cycle: 76
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t1 from address 751980: Column 364 access --- Core 5
+
+Cycle: 77
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 78
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 79
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 80
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 81
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 82
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 83
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 84
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 85
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 86
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 734 writeback --- Core 5
+
+Cycle: 87
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 88
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 89
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 90
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 91
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 92
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 93
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 94
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 95
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 96
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Row 732 access --- Core 5
+
+Cycle: 97
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Column 424 access --- Core 5
+
+Cycle: 98
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t6 from address 749992: Column 424 access --- Core 5
+
+Cycle: 99
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t4 from address 749992: Column 424 access --- Core 5
+
+Cycle: 100
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t4 from address 749992: Column 424 access --- Core 5
+
+Cycle: 101
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t2 from address 749984: Column 416 access --- Core 5
+
+Cycle: 102
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t2 from address 749984: Column 416 access --- Core 5
+
+Cycle: 103
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t0 from address 749980: Column 412 access --- Core 5
+
+Cycle: 104
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Stalled
+Core 6: Finshed
+DRAM: Load request to register t0 from address 749980: Column 412 access --- Core 5
+
+Cycle: 105
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 106
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 107
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 108
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 109
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 110
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 111
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 112
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 113
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 114
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 732 writeback --- Core 3
+
+Cycle: 115
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 116
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 117
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 118
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 119
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 120
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 121
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 122
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 123
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 124
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Row 441 access --- Core 3
+
+Cycle: 125
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Column 828 access --- Core 3
+
+Cycle: 126
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t9 from address 452412: Column 828 access --- Core 3
+
+Cycle: 127
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 452412: Column 828 access --- Core 3
+
+Cycle: 128
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 452412: Column 828 access --- Core 3
+
+Cycle: 129
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t5 from address 452408: Column 824 access --- Core 3
+
+Cycle: 130
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t5 from address 452408: Column 824 access --- Core 3
+
+Cycle: 131
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 452400: Column 816 access --- Core 3
+
+Cycle: 132
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 452400: Column 816 access --- Core 3
+
+Cycle: 133
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 134
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 135
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 136
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 137
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 138
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 139
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 140
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 141
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 142
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 441 writeback --- Core 3
+
+Cycle: 143
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 144
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 145
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 146
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 147
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 148
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 149
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 150
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 151
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 152
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Row 439 access --- Core 3
+
+Cycle: 153
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Column 876 access --- Core 3
+
+Cycle: 154
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t8 from address 450412: Column 876 access --- Core 3
+
+Cycle: 155
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 450412: Column 876 access --- Core 3
+
+Cycle: 156
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 450412: Column 876 access --- Core 3
+
+Cycle: 157
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t4 from address 450404: Column 868 access --- Core 3
+
+Cycle: 158
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t4 from address 450404: Column 868 access --- Core 3
+
+Cycle: 159
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 450396: Column 860 access --- Core 3
+
+Cycle: 160
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 450396: Column 860 access --- Core 3
+
+Cycle: 161
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 450412: Column 876 access --- Core 3
+
+Cycle: 162
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 450412: Column 876 access --- Core 3
+
+Cycle: 163
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t0 from address 450412: Column 876 access --- Core 3
+
+Cycle: 164
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Stalled
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t0 from address 450412: Column 876 access --- Core 3
+
+Cycle: 165
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 166
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 167
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 168
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 169
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 170
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 171
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 172
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 173
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 174
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 439 writeback --- Core 2
+
+Cycle: 175
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 176
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 177
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 178
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 179
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 180
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 181
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 182
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 183
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 184
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Row 293 access --- Core 2
+
+Cycle: 185
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Column 584 access --- Core 2
+
+Cycle: 186
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300616 of value 960 from register : Column 584 access --- Core 2
+
+Cycle: 187
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Save word instruction generated for DRAM to memory address 2048 from the register t0
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 188
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Load word instruction generated for DRAM from memory address 1072 to the register t2
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 189
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Load word instruction generated for DRAM from memory address 1096 to the register t3
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 190
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Load word instruction generated for DRAM from memory address 2180 to the register t1
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 191
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 192
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 193
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 194
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 195
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 196
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 293 writeback --- Core 2
+
+Cycle: 197
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 198
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 199
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 200
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 201
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 202
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 203
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 204
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 205
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 206
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Row 294 access --- Core 2
+
+Cycle: 207
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Column 584 access --- Core 2
+
+Cycle: 208
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 301640 of value 960 from register : Column 584 access --- Core 2
+
+Cycle: 209
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 301772: Column 716 access --- Core 2
+
+Cycle: 210
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 301772: Column 716 access --- Core 2
+
+Cycle: 211
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Save word instruction generated for DRAM to memory address 1048 from the register t1
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 212
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 213
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 214
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 215
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 216
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 217
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 218
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 219
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 220
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 294 writeback --- Core 2
+
+Cycle: 221
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 222
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 223
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 224
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 225
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 226
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 227
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 228
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 229
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 230
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Row 293 access --- Core 2
+
+Cycle: 231
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Column 656 access --- Core 2
+
+Cycle: 232
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 300688: Column 656 access --- Core 2
+
+Cycle: 233
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 300664: Column 632 access --- Core 2
+
+Cycle: 234
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 300664: Column 632 access --- Core 2
+
+Cycle: 235
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300640 of value 0 from register zero: Column 608 access --- Core 2
+
+Cycle: 236
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Stalled
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Save request to adrress 300640 of value 0 from register zero: Column 608 access --- Core 2
+
+Cycle: 237
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 238
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 239
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 240
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 241
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 242
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 243
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 244
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 245
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 246
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 293 writeback --- Core 1
+
+Cycle: 247
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 248
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 249
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 250
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 251
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 252
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 253
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 254
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 255
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 256
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Row 149 access --- Core 1
+
+Cycle: 257
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Column 232 access --- Core 1
+
+Cycle: 258
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t7 from address 152808: Column 232 access --- Core 1
+
+Cycle: 259
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t5 from address 152804: Column 228 access --- Core 1
+
+Cycle: 260
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t5 from address 152804: Column 228 access --- Core 1
+
+Cycle: 261
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 152800: Column 224 access --- Core 1
+
+Cycle: 262
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t3 from address 152800: Column 224 access --- Core 1
+
+Cycle: 263
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 152796: Column 220 access --- Core 1
+
+Cycle: 264
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t1 from address 152796: Column 220 access --- Core 1
+
+Cycle: 265
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 266
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 267
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 268
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 269
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 270
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 271
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 272
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 273
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 274
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 149 writeback --- Core 1
+
+Cycle: 275
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 276
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 277
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 278
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 279
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 280
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 281
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 282
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 283
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 284
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Row 147 access --- Core 1
+
+Cycle: 285
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Column 280 access --- Core 1
+
+Cycle: 286
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t6 from address 150808: Column 280 access --- Core 1
+
+Cycle: 287
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t4 from address 150808: Column 280 access --- Core 1
+
+Cycle: 288
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t4 from address 150808: Column 280 access --- Core 1
+
+Cycle: 289
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 150800: Column 272 access --- Core 1
+
+Cycle: 290
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t2 from address 150800: Column 272 access --- Core 1
+
+Cycle: 291
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t0 from address 150796: Column 268 access --- Core 1
+
+Cycle: 292
+Core 0: Finshed
+Core 1: Stalled
+Core 2: Finshed
+Core 3: Finshed
+Core 4: Finshed
+Core 5: Finshed
+Core 6: Finshed
+DRAM: Load request to register t0 from address 150796: Column 268 access --- Core 1
+
+Core 0 process data: 
+
+Register file of core 0
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x00000064	100
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x00000000	0
+R17	s1	0x00000000	0
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x00000000	0
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	0
+sw	0
+addi	1
+Core 1 process data: 
+
+Register file of core 1
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x00000000	0
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x0000000c	12
+R17	s1	0x00000008	8
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x00024924	149796
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	8
+sw	0
+addi	8
+Core 2 process data: 
+
+Register file of core 2
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x000003c0	960
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x00000000	0
+R17	s1	0x00000000	0
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x00049248	299592
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	3
+sw	3
+addi	2
+Core 3 process data: 
+
+Register file of core 3
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x00000000	0
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x00000018	24
+R17	s1	0x00000005	5
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x0006db6c	449388
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	12
+sw	0
+addi	8
+Core 4 process data: 
+
+Register file of core 4
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x0000000a	10
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x00000000	0
+R17	s1	0x00000000	0
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x00092490	599184
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	0
+sw	0
+addi	1
+Core 5 process data: 
+
+Register file of core 5
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x00000000	0
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x0000000c	12
+R17	s1	0x00000008	8
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x0000000c	12
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x000b6db4	748980
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	8
+sw	0
+addi	9
+Core 6 process data: 
+
+Register file of core 6
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x0000000c	12
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x0000000c	12
+R17	s1	0x00000008	8
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x000db6d8	898776
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	8
+sw	0
+addi	9

@@ -84,9 +84,14 @@ private:
     static std::set<std::string> reserved_words;
     static std::map<InstructionType, int> op_codes;
     static std::map<std::string, int> register_map;
-    static std::map<int, std::string> num_to_reg;
 
 public:
+
+    static std::map<int, std::string> num_to_reg;
+
+    // Size of save buffer
+    static const int saveQuBufferLength = 64;
+
     // Write port is busy or not
     bool writeBusy;
     
@@ -100,7 +105,7 @@ public:
     Request *loadQu[32];
 
     // Save buffer
-    Request *saveQu[64];
+    Request *saveQu[saveQuBufferLength];
 
     // Best request,if  bestReq[0] = 1 then load else save, bestReq[1] -> address of request
     int bestReq[2];
@@ -198,8 +203,6 @@ struct DRAM_Req
 {
     Core *core;
     Request *req;
-    bool rowBenefit;
-    bool waitBenefit;
 };
 
 class DRAM
