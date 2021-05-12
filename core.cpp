@@ -32,7 +32,7 @@ void Core::executeAddi(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]] != nullptr)
+    else if (loadQu[params[0]].valid)
     {// If the register to be loaded is in DRAM load qu then stall and assert the waiting signal of the corresponding register
         waitReg[params[0]] = true;
         current--;
@@ -40,9 +40,9 @@ void Core::executeAddi(std::vector<unsigned int> &params)
     }
 
     // If the register to be written has a request in loadQu then delete the request
-    if (loadQu[params[1]] != nullptr)
+    if (loadQu[params[1]].valid)
     {
-        loadQu[params[1]] = nullptr;
+        loadQu[params[1]] = Request::null;
         pendingRequests--;
     }
 
@@ -81,16 +81,16 @@ void Core::executeAdd(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
         return;
     }
 
-    if (loadQu[params[2]] != nullptr)
+    if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = nullptr;
+        loadQu[params[2]] = Request::null;
         pendingRequests--;
     }
 
@@ -113,16 +113,16 @@ void Core::executeSub(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
         return;
     }
 
-    if (loadQu[params[2]] != nullptr)
+    if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = nullptr;
+        loadQu[params[2]] = Request::null;
         pendingRequests--;
     }
 
@@ -145,16 +145,16 @@ void Core::executeMul(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
         return;
     }
 
-    if (loadQu[params[2]] != nullptr)
+    if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = nullptr;
+        loadQu[params[2]] = Request::null;
         pendingRequests--;
     }
 
@@ -177,16 +177,16 @@ void Core::executeSlt(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
         return;
     }
 
-    if (loadQu[params[2]] != nullptr)
+    if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = nullptr;
+        loadQu[params[2]] = Request::null;
         pendingRequests--;
     }
 
@@ -209,7 +209,7 @@ void Core::executeBeq(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -240,7 +240,7 @@ void Core::executeBne(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[0]] != nullptr || loadQu[params[1]] != nullptr)
+    if (loadQu[params[0]].valid || loadQu[params[1]].valid)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -282,7 +282,7 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // If the params[2] in loadQu then wait
-    if (loadQu[params[2]] != nullptr)
+    if (loadQu[params[2]].valid)
     {
         waitReg[params[2]] = true;
         waitMem = address;
@@ -291,14 +291,14 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // Forwarding
-    if (saveQu[address % saveQuBufferLength] != nullptr)
+    if (saveQu[address % saveQuBufferLength].valid)
     {// If memory to be loaded from is to be written
 
         // Check if the request to be written on the same address and the write is not busy
-        if (saveQu[address % saveQuBufferLength]->address == address && !writeBusy)
+        if (saveQu[address % saveQuBufferLength].address == address && !writeBusy)
         {
             // Write the value directly from the wait buffer
-            register_file[params[0]] = saveQu[address % saveQuBufferLength]->reg;
+            register_file[params[0]] = saveQu[address % saveQuBufferLength].reg;
 
             // Set message
             message = "Forwarded save instruction at address " + std::to_string(address) + " to load the value in register " + num_to_reg[params[0]];
@@ -307,11 +307,11 @@ void Core::executeLw(std::vector<unsigned int> &params)
             instruction_count[lw]++;
             return;
         }
-        else if (saveQu[address % saveQuBufferLength]->address == address && writeBusy)
+        else if (saveQu[address % saveQuBufferLength].address == address && writeBusy)
         {// If write is busy and at the same address, then write in next cycle
             
             // Set the forward value and and forward signal
-            forward_value = saveQu[address % saveQuBufferLength]->reg;
+            forward_value = saveQu[address % saveQuBufferLength].reg;
             forward = true;
             current--;
             return;
@@ -330,12 +330,11 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // Request generation
-    addRequest(new Request(true, address, params[0]));
+    addRequest(Request(true, address, params[0]));
     pendingRequests++;
     message = "Load word instruction generated for DRAM from memory address " +
                 std::to_string(address - base_address) +
                 " to the register " + num_to_reg[params[0]];
-    instruction_count[lw]++;
 
     waitReg[params[2]] = false;
 }
@@ -353,9 +352,9 @@ void Core::executeSw(std::vector<unsigned int> &params)
     }
 
     // Validation
-    if (saveQu[address % saveQuBufferLength] != nullptr)
+    if (saveQu[address % saveQuBufferLength].valid)
     {// If same address point busy then check
-        if (saveQu[address % saveQuBufferLength]->address != address)
+        if (saveQu[address % saveQuBufferLength].address != address)
         {// If different address busy then stall
             current--;
             return;
@@ -363,7 +362,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
     }
     
     // If any of the input register is busy then stall
-    if (loadQu[params[0]] != nullptr || loadQu[params[2]] != nullptr)
+    if (loadQu[params[0]].valid || loadQu[params[2]].valid)
     {
         waitReg[params[0]] = waitReg[params[2]] = true;
         current--;
@@ -371,12 +370,11 @@ void Core::executeSw(std::vector<unsigned int> &params)
     }
 
     // Request generation
-    addRequest(new Request(false, address, register_file[params[0]]));
+    addRequest(Request(false, address, register_file[params[0]]));
     pendingRequests++;
     message = "Save word instruction generated for DRAM to memory address " +
                 std::to_string(address - base_address) +
                 " from the register " + num_to_reg[params[0]];
-    instruction_count[sw]++;
 
     waitReg[params[0]] = waitReg[params[2]] = false;
 }
@@ -411,33 +409,27 @@ void Core::printData()
     }
 }
 
-void Core::addRequest(Request *req)
+void Core::addRequest(Request req)
 {
-    if (req->load)
+    if (req.load)
     {
-        if (loadQu[req->reg] != nullptr)
+        if (loadQu[req.reg].valid)
         {// Already request present then overwrite
             
             // Decrease number of pending request
             pendingRequests--;
-
-            // Clean the heap space (Good practice)
-            delete loadQu[req->reg];
         }
-        loadQu[req->reg] = req;
+        loadQu[req.reg] = req;
     }
     else
     {
-        if (saveQu[req->address % saveQuBufferLength] != nullptr)
+        if (saveQu[req.address % saveQuBufferLength].valid)
         {// Already request present then overwrite
             
             // Decrease number of pending request
             pendingRequests--;
-
-            // Clean the heap space (Good practice)
-            delete saveQu[req->address % saveQuBufferLength];
         }
-        saveQu[req->address % saveQuBufferLength] = req;
+        saveQu[req.address % saveQuBufferLength] = req;
     }
 
 }
@@ -453,17 +445,17 @@ void Core::setBestRequest()
     // Load best
     for (int i = 0; i < 32; i++)
     {
-        if (loadQu[i] == nullptr)
+        if (!loadQu[i].valid)
         {
             continue;
         }
         loadNorm = i;
-        if (loadQu[i]->row == DRAM::activeRow && waitReg[i])
+        if (loadQu[i].row == DRAM::activeRow && waitReg[i])
         {
             loadBest = i;
             break;
         }
-        else if (loadQu[i]->row == DRAM::activeRow)
+        else if (loadQu[i].row == DRAM::activeRow)
         {
             loadBest = i;
         }
@@ -476,21 +468,21 @@ void Core::setBestRequest()
     // Save best
     for (int i = 0; i < Core::saveQuBufferLength; i++)
     {
-        if (saveQu[i] == nullptr)
+        if (!saveQu[i].valid)
         {
             continue;
         }
         saveNorm = i;
-        if (saveQu[i]->row == DRAM::activeRow && waitMem == saveQu[i]->address)
+        if (saveQu[i].row == DRAM::activeRow && waitMem == saveQu[i].address)
         {
             saveBest = i;
             break;
         }
-        else if (saveQu[i]->row == DRAM::activeRow)
+        else if (saveQu[i].row == DRAM::activeRow)
         {
             saveBest = i;
         }
-        else if (waitMem == saveQu[i]->address && saveBest == -1)
+        else if (waitMem == saveQu[i].address && saveBest == -1)
         {
             saveBest = i;
         }
@@ -525,35 +517,35 @@ void Core::setBestRequest()
     }
     else
     {
-        Request *l = loadQu[loadBest];
-        Request *s = saveQu[saveBest];
+        Request l = loadQu[loadBest];
+        Request s = saveQu[saveBest];
 
-        if (l->row == DRAM::activeRow && waitReg[l->reg])
+        if (l.row == DRAM::activeRow && waitReg[l.reg])
         {
             bestReq[0] = 1;
             bestReq[1] = loadBest;
         }
-        else if (s->row == DRAM::activeRow && waitMem == s->address)
+        else if (s.row == DRAM::activeRow && waitMem == s.address)
         {
             bestReq[0] = 0;
             bestReq[1] = saveBest;
         }
-        else if (l->row == DRAM::activeRow)
+        else if (l.row == DRAM::activeRow)
         {
             bestReq[0] = 1;
             bestReq[1] = loadBest;
         }
-        else if (s->row == DRAM::activeRow)
+        else if (s.row == DRAM::activeRow)
         {
             bestReq[0] = 0;
             bestReq[1] = saveBest;
         }
-        else if (waitReg[l->reg])
+        else if (waitReg[l.reg])
         {
             bestReq[0] = 1;
             bestReq[1] = loadBest;
         }
-        else if (waitMem == s->address)
+        else if (waitMem == s.address)
         {
             bestReq[0] = 0;
             bestReq[1] = saveBest;
@@ -563,27 +555,22 @@ void Core::setBestRequest()
             bestReq[0] = bestReq[1] = -1;
         }
     }
-}
 
-Request* Core::getNextRequest()
-{
-    if (bestReq[0] = -1)
+    if (bestReq[0] == 0)
     {
-        if (pendingRequests > 0)
-        {
-            std::cout << "f" << std::endl;
-        }
-        return nullptr;
+        bestRequest = saveQu[bestReq[1]];
+    }
+    else if (bestReq[0] == 1)
+    {
+        bestRequest = loadQu[bestReq[1]];
     }
     else
     {
-        if (bestReq[0] == 1)
-        {
-            return loadQu[bestReq[1]];
-        }
-        else
-        {
-            return saveQu[bestReq[1]];
-        }
+        bestRequest = Request::null;
     }
+}
+
+Request Core::getNextRequest()
+{
+    return bestRequest;
 }

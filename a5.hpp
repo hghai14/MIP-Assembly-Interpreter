@@ -51,14 +51,37 @@ void detectOFsub(int a, int b, unsigned int current, unsigned int core_num);
 class Request
 {
 public:
-    bool load;
+    bool load, valid = true;
+    
     unsigned int address;
+    
     // Save -> Word; Load -> Reg
     unsigned int reg;
 
     unsigned int row;
 
+    static Request null;
+
     Request(bool load, unsigned int address, unsigned int reg);
+    
+    Request()
+    {
+        valid = false;
+        load = 0;
+        address = 0;
+        reg = 0;
+        row = 0;
+    }
+
+    bool operator==(const Request& r)
+    {
+        return r.load == load && r.address == address && r.reg == reg;
+    }
+
+    bool operator!=(const Request& r)
+    {
+        return r.load != load || r.address != address || r.reg != reg;
+    }
 };
 
 class Core
@@ -66,6 +89,13 @@ class Core
 
 private:
     std::ifstream instream;
+
+    static std::string instruction_type_string[10];
+    static std::set<std::string> reserved_words;
+    static std::map<InstructionType, int> op_codes;
+    static std::map<std::string, int> register_map;
+
+public:
 
     std::map<InstructionType, long long int> instruction_count = {
         std::make_pair(jump, 0),
@@ -79,13 +109,6 @@ private:
         std::make_pair(lw, 0),
         std::make_pair(sw, 0),
     };
-
-    static std::string instruction_type_string[10];
-    static std::set<std::string> reserved_words;
-    static std::map<InstructionType, int> op_codes;
-    static std::map<std::string, int> register_map;
-
-public:
 
     static std::map<int, std::string> num_to_reg;
 
@@ -102,13 +125,15 @@ public:
     unsigned int waitMem;
 
     // Load buffer
-    Request *loadQu[32];
+    Request loadQu[32];
 
     // Save buffer
-    Request *saveQu[saveQuBufferLength];
+    Request saveQu[saveQuBufferLength];
 
     // Best request,if  bestReq[0] = 1 then load else save, bestReq[1] -> address of request
     int bestReq[2];
+
+    Request bestRequest;
 
     // Number of pending requests
     int pendingRequests;
@@ -190,19 +215,37 @@ public:
     void printData();
 
     // Add memory request to load or save buffer
-    void addRequest(Request *req);
+    void addRequest(Request req);
 
     // Get the next best request
-    Request *getNextRequest();
+    Request getNextRequest();
 
     // Set the best request
     void setBestRequest();
 };
 
-struct DRAM_Req
+class DRAM_Req
 {
+public:
     Core *core;
-    Request *req;
+    Request req;
+
+    static DRAM_Req null;
+
+    DRAM_Req()
+    {
+
+    }
+
+    bool operator==(DRAM_Req& r)
+    {
+        return r.core == core && r.req == req;
+    }
+
+    bool operator!=(DRAM_Req& r)
+    {
+        return r.req != req || r.core != core;
+    }
 };
 
 class DRAM
@@ -234,7 +277,7 @@ public:
     static int mrmWaitLeft;
 
     // Request currently processed by DRAM, else nullptr
-    static DRAM_Req *activeRequest;
+    static DRAM_Req activeRequest, tempRequest;
 
     // true when DRAM busy
     static bool busy;
@@ -246,7 +289,7 @@ public:
     static void process();
 
     // Returns the next request to be processed, called only when, DRAM not busy
-    static DRAM_Req *getNextRequest();
+    static DRAM_Req getNextRequest();
 };
 
 #endif
