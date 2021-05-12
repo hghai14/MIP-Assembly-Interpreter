@@ -32,7 +32,7 @@ void Core::executeAddi(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]].valid)
+    else if (loadQu[params[0]].busy)
     {// If the register to be loaded is in DRAM load qu then stall and assert the waiting signal of the corresponding register
         waitReg[params[0]] = true;
         current--;
@@ -81,7 +81,7 @@ void Core::executeAdd(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    else if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -113,7 +113,7 @@ void Core::executeSub(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    else if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -145,7 +145,7 @@ void Core::executeMul(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    else if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -177,7 +177,7 @@ void Core::executeSlt(std::vector<unsigned int> &params)
         current--;
         return;
     }
-    else if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    else if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -209,7 +209,7 @@ void Core::executeBeq(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -240,7 +240,7 @@ void Core::executeBne(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[0]].valid || loadQu[params[1]].valid)
+    if (loadQu[params[0]].busy || loadQu[params[1]].busy)
     {
         waitReg[params[0]] = waitReg[params[1]] = true;
         current--;
@@ -282,7 +282,7 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // If the params[2] in loadQu then wait
-    if (loadQu[params[2]].valid)
+    if (loadQu[params[2]].busy)
     {
         waitReg[params[2]] = true;
         waitMem = address;
@@ -291,7 +291,7 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // Forwarding
-    if (saveQu[address % saveQuBufferLength].valid)
+    if (saveQu[address % saveQuBufferLength].busy)
     {// If memory to be loaded from is to be written
 
         // Check if the request to be written on the same address and the write is not busy
@@ -362,7 +362,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
     }
     
     // If any of the input register is busy then stall
-    if (loadQu[params[0]].valid || loadQu[params[2]].valid)
+    if (loadQu[params[0]].busy || loadQu[params[2]].busy)
     {
         waitReg[params[0]] = waitReg[params[2]] = true;
         current--;

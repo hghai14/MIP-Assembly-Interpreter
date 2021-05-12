@@ -80,11 +80,6 @@ void DRAM::process()
 
     message += " --- Core " + std::to_string(activeRequest.core->core_num);
 
-    if (rowLeft + writeLeft + colLeft == 1)
-    {
-        activeRequest.core->writeBusy = true;
-    }
-
     if (colLeft == 0)
     { // Request if completed
 
@@ -103,11 +98,8 @@ void DRAM::process()
             c->instruction_count[sw]++;
         }
 
-        c->writeBusy = false;
         c->pendingRequests--;
-        c->waitMem = -1;
-
-        activeRequest = DRAM_Req::null;
+        activeRequest.core->writeBusy = true;
 
         // Set the busy to false
         busy = false;
@@ -119,17 +111,39 @@ bool DRAM::execute()
     message = "Free";
 
     bool f = false;
+
+    if (!busy && activeRequest != DRAM_Req::null)
+    {
+        Request r = activeRequest.req;
+        Core *c= activeRequest.core;
+
+        c->writeBusy = false;
+        c->waitMem = -1;
+
+        if (r.load && !c->loadQu[r.reg].valid && c->loadQu[r.reg].busy &&
+            c->loadQu[r.reg].address == r.address)
+        {
+            c->loadQu[r.reg].busy = false;
+        }
+        else if (!r.load && !c->saveQu[r.address % Core::saveQuBufferLength].valid &&
+                c->saveQu[r.address % Core::saveQuBufferLength].busy &&
+                c->saveQu[r.address % Core::saveQuBufferLength].address == r.address && 
+                c->saveQu[r.address % Core::saveQuBufferLength].reg == r.reg)
+        {
+            c->saveQu[r.address % Core::saveQuBufferLength].busy = false;
+        }
+    }
     
     if (!busy && tempRequest != DRAM_Req::null)
     {
         f = true;
-
+        
         activeRequest = tempRequest;
-
-        writeLeft = rowLeft = 0;
 
         Request r = activeRequest.req;
         Core *c= activeRequest.core;
+
+        writeLeft = rowLeft = 0;
 
         if (r.load && c->loadQu[r.reg].valid&&
             c->loadQu[r.reg].address == r.address)
@@ -177,11 +191,8 @@ DRAM_Req DRAM::getNextRequest()
     bool waitReg = true;
     bool waitMem = true;
 
-    int total = 0;
-
     for (Core *c : cores)
     {
-        total += c->pendingRequests;
         Request r = c->getNextRequest();
         if (!r.valid)
         {
