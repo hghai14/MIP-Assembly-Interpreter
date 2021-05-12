@@ -1,5 +1,8 @@
 #include "a5.hpp"
 
+DRAM_Req DRAM_Req::null = DRAM_Req();
+Request Request::null = Request();
+
 // Row and column access delay
 int DRAM::ROW_ACCESS_DELAY = -1;
 int DRAM::COL_ACCESS_DELAY = -1;
@@ -22,7 +25,8 @@ int DRAM::colLeft = 0;
 int DRAM::mrmWaitLeft = 0;
 
 // Active request at DRAM
-DRAM_Req *DRAM::activeRequest;
+DRAM_Req DRAM::activeRequest = DRAM_Req::null;
+DRAM_Req DRAM::tempRequest = DRAM_Req::null;
 
 // Request constructor
 Request::Request(bool load, unsigned int address, unsigned int reg)
@@ -44,15 +48,15 @@ Request::Request(bool load, unsigned int address, unsigned int reg)
 void DRAM::process()
 {
     // Detailed message
-    if (activeRequest->req->load)
+    if (activeRequest.req.load)
     {
-        message = "Load request to register " + Core::num_to_reg[activeRequest->req->reg] + 
-                    " from address " + std::to_string(activeRequest->req->address);
+        message = "Load request to register " + Core::num_to_reg[activeRequest.req.reg] + 
+                    " from address " + std::to_string(activeRequest.req.address);
     }
     else
     {
-        message = "Save request to adrress " + std::to_string(activeRequest->req->address) + " of value " + 
-                    std::to_string(activeRequest->req->reg);
+        message = "Save request to adrress " + std::to_string(activeRequest.req.address) + " of value " + 
+                    std::to_string(activeRequest.req.reg);
     }
 
     message += ": ";
@@ -64,49 +68,46 @@ void DRAM::process()
     }
     else if (rowLeft > 0)
     { // If number of row access left
-        activeRow = activeRequest->req->row;
+        activeRow = activeRequest.req.row;
         rowLeft--;
         message += "Row " + std::to_string(activeRow) + " access";
     }
     else if (colLeft > 0)
     { // If number of column access left
         colLeft--;
-        message += "Column " + std::to_string(activeRequest->req->address % 1024) + " access";
+        message += "Column " + std::to_string(activeRequest.req.address % 1024) + " access";
     }
 
-    message += " --- Core " + std::to_string(activeRequest->core->core_num);
+    message += " --- Core " + std::to_string(activeRequest.core->core_num);
 
     if (rowLeft + writeLeft + colLeft == 1)
     {
-        activeRequest->core->writeBusy = true;
+        activeRequest.core->writeBusy = true;
     }
 
     if (colLeft == 0)
     { // Request if completed
 
         // Perform request
-        Request *r = activeRequest->req;
-        Core *c = activeRequest->core;
+        Request r = activeRequest.req;
+        Core *c = activeRequest.core;
 
-        if (r->load)
+        if (r.load)
         {
-            c->register_file[r->reg] = memory[r->address / 4];
-            c->loadQu[r->reg] = nullptr;
+            c->register_file[r.reg] = memory[r.address / 4];
             c->instruction_count[lw]++;
         }
         else
         {
-            memory[r->address / 4] = r->reg;
-            c->saveQu[r->address % Core::saveQuBufferLength] = nullptr;
+            memory[r.address / 4] = r.reg;
             c->instruction_count[sw]++;
         }
-
-        delete r;
-        delete activeRequest;
 
         c->writeBusy = false;
         c->pendingRequests--;
         c->waitMem = -1;
+
+        activeRequest = DRAM_Req::null;
 
         // Set the busy to false
         busy = false;
@@ -117,20 +118,33 @@ bool DRAM::execute()
 {
     message = "Free";
 
-    // Get the next best request
-    activeRequest = getNextRequest();
+    bool f = false;
     
-    if (!busy)
+    if (!busy && tempRequest != DRAM_Req::null)
     {
-        if (activeRequest == nullptr)
-        {
-            return false;
-        }
+        f = true;
+
+        activeRequest = tempRequest;
 
         writeLeft = rowLeft = 0;
 
+        Request r = activeRequest.req;
+        Core *c= activeRequest.core;
+
+        if (r.load && c->loadQu[r.reg].valid&&
+            c->loadQu[r.reg].address == r.address)
+        {
+            c->loadQu[r.reg].valid = false;
+        }
+        else if (!r.load && c->saveQu[r.address % Core::saveQuBufferLength].valid &&
+                c->saveQu[r.address % Core::saveQuBufferLength].address == r.address && 
+                c->saveQu[r.address % Core::saveQuBufferLength].reg == r.reg)
+        {
+            c->saveQu[r.address % Core::saveQuBufferLength].valid = false;
+        }
+
         // Set the wait cycles left
-        if (activeRequest->req->row != activeRow && activeRow != -1)
+        if (activeRequest.req.row != activeRow && activeRow != -1)
         {
             writeLeft = rowLeft = ROW_ACCESS_DELAY;
         }
@@ -144,33 +158,21 @@ bool DRAM::execute()
         // Set busy true
         busy = true;
     }
-    else
+    
+    if (busy)
     {
+        f = true;
         process();
     }
 
-    return true;
+    tempRequest = getNextRequest();
+
+    return f;
 }
 
-Request *getBestReq(Core *c, int *bestReq)
+DRAM_Req DRAM::getNextRequest()
 {
-    if (bestReq[0] == 0)
-    {
-        return c->saveQu[bestReq[1]];
-    }
-    else if (bestReq[0] == 1)
-    {
-        return c->loadQu[bestReq[1]];
-    }
-    else
-    {
-        return nullptr;
-    }
-}
-
-DRAM_Req *DRAM::getNextRequest()
-{
-    Request *best = nullptr;
+    Request best = Request::null;
     Core *best_c = nullptr;
     bool waitReg = true;
     bool waitMem = true;
@@ -180,25 +182,25 @@ DRAM_Req *DRAM::getNextRequest()
     for (Core *c : cores)
     {
         total += c->pendingRequests;
-        Request *r = getBestReq(c, c->bestReq);
-        if (r == nullptr)
+        Request r = c->getNextRequest();
+        if (!r.valid)
         {
             continue;
         }
 
-        if (r->row == activeRow)
+        if (r.row == activeRow)
         {
             best = r;
             best_c = c;
             break;
         }
-        else if (c->waitReg[r->reg])
+        else if (c->waitReg[r.reg])
         {
             best = r;
             best_c = c;
             waitReg = false;
         }
-        else if (c->waitMem == r->address && waitReg)
+        else if (c->waitMem == r.address && waitReg)
         {
             best = r;
             best_c = c;
@@ -211,14 +213,15 @@ DRAM_Req *DRAM::getNextRequest()
         }
     }
 
-    if (best == nullptr)
+    if (!best.valid)
     {
-        return nullptr;
+        return DRAM_Req::null;
     }
-    else{
-        DRAM_Req *res = new DRAM_Req();
-        res->req = best;
-        res->core = best_c;
+    else
+    {
+        DRAM_Req res;
+        res.core = best_c;
+        res.req = best;
         return res;
     }
 

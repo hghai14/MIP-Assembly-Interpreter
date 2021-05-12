@@ -16,49 +16,57 @@ DRAM: Free
 
 Cycle: 5
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 6
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 7
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 8
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 9
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 10
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 11
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 12
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 13
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 14
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Row 0 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Row 0 access --- Core 0
 
 Cycle: 15
 Core 0: Stalled
-DRAM: Save request to adrress 200 of value 0: Column 200 access --- Core 0
+DRAM: Save request to adrress 200 of value 100: Column 200 access --- Core 0
 
 Cycle: 16
+Core 0: Finshed
+DRAM: Save request to adrress 200 of value 100: Column 200 access --- Core 0
+
+Cycle: 17
+Core 0: Finshed
+DRAM: Save request to adrress 200 of value 0: Column 200 access --- Core 0
+
+Cycle: 18
 Core 0: Finshed
 DRAM: Save request to adrress 200 of value 0: Column 200 access --- Core 0
 
@@ -108,7 +116,7 @@ beq	0
 bne	0
 slt	0
 lw	0
-sw	1
+sw	2
 addi	1
 
-Throughput: 0.02 Instructions per cycle
+Throughput: 0.03 Instructions per cycle

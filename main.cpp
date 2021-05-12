@@ -139,6 +139,16 @@ Core::Core(std::string path, unsigned int core_num)
 
     // Count for number of pending requests
     pendingRequests = 0;
+
+    for (int i = 0; i < 32; i++)
+    {
+        loadQu[i] = Request::null;
+    }
+
+    for (int i = 0; i < saveQuBufferLength; i++)
+    {
+        saveQu[i] = Request::null;
+    }
 }
 
 int main(int argc, char *argv[])
@@ -467,10 +477,7 @@ void Core::setup()
 bool Core::execute()
 {
     // Sets the best request at the memory manager buffer
-    if (pendingRequests > 0)
-    {
-        setBestRequest();
-    }
+    setBestRequest();
 
     // Initialize the message to null
 
