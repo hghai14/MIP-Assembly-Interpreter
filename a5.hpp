@@ -51,7 +51,7 @@ void detectOFsub(int a, int b, unsigned int current, unsigned int core_num);
 class Request
 {
 public:
-    bool load, valid = true;
+    bool load, valid = true, busy = true;
     
     unsigned int address;
     
@@ -67,6 +67,7 @@ public:
     Request()
     {
         valid = false;
+        busy = false;
         load = 0;
         address = 0;
         reg = 0;
