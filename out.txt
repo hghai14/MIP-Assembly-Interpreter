@@ -3,92 +3,64 @@ Core 0: Add immediate instruction executed, t0 = t0 + 100 = 100
 DRAM: Free
 
 Cycle: 2
-Core 0: Load word instruction generated for DRAM from memory address 200 to the register t1
+Core 0: Save word instruction generated for DRAM to memory address 100 from the register t0
 DRAM: Free
 
 Cycle: 3
-Core 0: Stalled
+Core 0: Forwarded save instruction at address 100 to load the value in register t1
 DRAM: Free
 
 Cycle: 4
-Core 0: Stalled
+Core 0: Add immediate instruction executed, t1 = t3 + 100 = 100
 DRAM: Free
 
 Cycle: 5
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 6
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 7
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 8
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 9
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 10
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 11
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 12
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 13
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 14
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Row 0 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Row 0 access --- Core 0
 
 Cycle: 15
 Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Column 200 access --- Core 0
+DRAM: Save request to adrress 100 of value 100: Column 100 access --- Core 0
 
 Cycle: 16
-Core 0: Stalled
-DRAM: Load request to register t1 from address 200: Column 200 access --- Core 0
-
-Cycle: 17
-Core 0: Load word instruction generated for DRAM from memory address 100 to the register t1
-DRAM: Free
-
-Cycle: 18
-Core 0: Add immediate instruction executed, s0 = s0 + 5 = 5
-DRAM: Free
-
-Cycle: 19
-Core 0: Add immediate instruction executed, s0 = s0 + 5 = 10
-DRAM: Free
-
-Cycle: 20
-Core 0: Add immediate instruction executed, s0 = s0 + 5 = 15
-DRAM: Load request to register t1 from address 100: Column 100 access --- Core 0
-
-Cycle: 21
-Core 0: Stalled
-DRAM: Load request to register t1 from address 100: Column 100 access --- Core 0
-
-Cycle: 22
-Core 0: Add immediate instruction executed, s0 = s0 + 5 = 20
-DRAM: Free
-
-Cycle: 23
-Core 0: Add immediate instruction executed, s0 = s0 + 5 = 25
-DRAM: Free
+Core 0: Finshed
+DRAM: Save request to adrress 100 of value 100: Column 100 access --- Core 0
 
 Core 0 process data: 
 
@@ -102,14 +74,14 @@ R5	a1	0x00000000	0
 R6	a2	0x00000000	0
 R7	a3	0x00000000	0
 R8	t0	0x00000064	100
-R9	t1	0x00000000	0
+R9	t1	0x00000064	100
 R10	t2	0x00000000	0
 R11	t3	0x00000000	0
 R12	t4	0x00000000	0
 R13	t5	0x00000000	0
 R14	t6	0x00000000	0
 R15	t7	0x00000000	0
-R16	s0	0x00000019	25
+R16	s0	0x00000000	0
 R17	s1	0x00000000	0
 R18	s2	0x00000000	0
 R19	s3	0x00000000	0
@@ -135,8 +107,10 @@ mul	0
 beq	0
 bne	0
 slt	0
-lw	2
-sw	0
-addi	6
+lw	1
+sw	1
+addi	2
 
-Throughput: 0.08 Instructions per cycle
+Throughput: 0.235294 Instructions per cycle
+
+Throughput: 4 Instructions per cycle

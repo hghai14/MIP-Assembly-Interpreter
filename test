@@ -1,10 +1,5 @@
 main:
     addi $t0, $t0, 100
-    lw $t1, 100($t0)
-    lw $t1, 100($t1)
-    addi $s0, $s0, 5
-    addi $s0, $s0, 5
-    addi $s0, $s0, 5
-    addi $s0, $s0, 5
-    addi $s0, $s0, 5
-
+    sw $t0, 100($zero)
+    lw $t1, 0($t0)
+    addi $t1, $t3, 100

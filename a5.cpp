@@ -133,6 +133,8 @@ bool DRAM::execute()
             c->saveQu[r.address % Core::saveQuBufferLength].busy = false;
         }
     }
+
+    // std::cout << (tempRequest != DRAM_Req::null) << std::endl;
     
     if (!busy && tempRequest != DRAM_Req::null)
     {
@@ -180,6 +182,13 @@ bool DRAM::execute()
     }
 
     tempRequest = getNextRequest();
+
+    if (tempRequest != DRAM_Req::null)
+    {
+        f = true;
+    }
+
+    // std::cout << tempRequest.req.load << " " << tempRequest.req.reg << " " << tempRequest.req.valid << std::endl;
 
     return f;
 }

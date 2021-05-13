@@ -4,3 +4,10 @@ main:
     addi $t0, $t0, 100
     sw $t0, 100($t0)
     lw $s0, 100($t0)
+
+main:
+    addi $t0, $t0, 100
+    sw $t0, 100($zero)
+    lw $t1, 0($t0)
+    addi $t1, $t3, 100
+
