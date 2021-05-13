@@ -211,8 +211,6 @@ int main(int argc, char *argv[])
         // Bool var to detect if there exists and active core
         bool f = false;
 
-        f = f | DRAM::execute();
-
         // Loop through all the cores
         for (unsigned int i = 0; i < n; i++)
         {
@@ -227,6 +225,8 @@ int main(int argc, char *argv[])
                 DRAM::cores[i]->active = false;
             }
         }
+
+        f = f | DRAM::execute();
 
         // If all the cores and DRAM are inactive then break
         if (!f)
@@ -479,9 +479,6 @@ void Core::setup()
 // Function to execute the program
 bool Core::execute()
 {
-    // Sets the best request at the memory manager buffer
-    setBestRequest();
-
     // Initialize the message to null
 
     // If the program counter is less than the last instruction then procesd
@@ -504,11 +501,18 @@ bool Core::execute()
         // Hard wire register zero to 0
         register_file[0] = (unsigned int)0;
 
+        // Sets the best request at the memory manager buffer
+        // setBestRequest();
+
         return true;
     }
     else if (pendingRequests > 0)
     {
         message = "Stalled";
+
+        // Sets the best request at the memory manager buffer
+        // setBestRequest();
+
         // Else if any request pending then proceed
         return true;
     }

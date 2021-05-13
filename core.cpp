@@ -39,12 +39,35 @@ void Core::executeAddi(std::vector<unsigned int> &params)
         return;
     }
 
-    // If the register to be written has a request in loadQu then delete the request
-    if (loadQu[params[1]].valid)
+    if (DRAM::activeRequest != DRAM_Req::null && DRAM::activeRequest.req.load && DRAM::activeRequest.req.reg == params[1] && DRAM::activeRequest.req.busy)
     {
+        waitReg[params[1]] = true;
+        current--;
+        return;
+    }
+
+    // If the register to be written has a request in loadQu then delete the request
+    if (loadQu[params[1]].valid && DRAM::tempRequest.req != loadQu[params[1]])
+    {
+        if (bestRequest == loadQu[params[1]])
+        {
+            bestRequest.valid = false;
+        }
         loadQu[params[1]].valid = false;
         instruction_count[lw]++;
         pendingRequests--;
+    }
+    else if (loadQu[params[1]].valid)
+    {
+        waitReg[params[1]] = true;
+        current--;
+        return;
+    }
+    else if (!loadQu[params[1]].valid && loadQu[params[1]].busy)
+    {
+        waitReg[params[1]] = true;
+        current--;
+        return;
     }
 
     // The number to be added
@@ -89,11 +112,35 @@ void Core::executeAdd(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[2]].valid)
+    if (DRAM::activeRequest != DRAM_Req::null && DRAM::activeRequest.req.load && DRAM::activeRequest.req.reg == params[2] && DRAM::activeRequest.req.busy)
     {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+
+    // If the register to be written has a request in loadQu then delete the request
+    if (loadQu[params[2]].valid && DRAM::tempRequest.req != loadQu[params[2]])
+    {
+        if (bestRequest == loadQu[params[2]])
+        {
+            bestRequest.valid = false;
+        }
         loadQu[params[2]].valid = false;
         instruction_count[lw]++;
         pendingRequests--;
+    }
+    else if (loadQu[params[2]].valid)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+    else if (!loadQu[params[2]].valid && loadQu[params[2]].busy)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
     }
 
     int a = (int) register_file[params[0]];
@@ -122,11 +169,35 @@ void Core::executeSub(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[2]].valid)
+    if (DRAM::activeRequest != DRAM_Req::null && DRAM::activeRequest.req.load && DRAM::activeRequest.req.reg == params[2] && DRAM::activeRequest.req.busy)
     {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+
+    // If the register to be written has a request in loadQu then delete the request
+    if (loadQu[params[2]].valid && DRAM::tempRequest.req != loadQu[params[2]])
+    {
+        if (bestRequest == loadQu[params[2]])
+        {
+            bestRequest.valid = false;
+        }
         loadQu[params[2]].valid = false;
         instruction_count[lw]++;
         pendingRequests--;
+    }
+    else if (loadQu[params[2]].valid)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+    else if (!loadQu[params[2]].valid && loadQu[params[2]].busy)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
     }
 
     int a = (int) register_file[params[0]];
@@ -155,11 +226,35 @@ void Core::executeMul(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[2]].valid)
+    if (DRAM::activeRequest != DRAM_Req::null && DRAM::activeRequest.req.load && DRAM::activeRequest.req.reg == params[2] && DRAM::activeRequest.req.busy)
     {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+
+    // If the register to be written has a request in loadQu then delete the request
+    if (loadQu[params[2]].valid && DRAM::tempRequest.req != loadQu[params[2]])
+    {
+        if (bestRequest == loadQu[params[2]])
+        {
+            bestRequest.valid = false;
+        }
         loadQu[params[2]].valid = false;
         instruction_count[lw]++;
         pendingRequests--;
+    }
+    else if (loadQu[params[2]].valid)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+    else if (!loadQu[params[2]].valid && loadQu[params[2]].busy)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
     }
 
     int a = (int) register_file[params[0]];
@@ -188,11 +283,35 @@ void Core::executeSlt(std::vector<unsigned int> &params)
         return;
     }
 
-    if (loadQu[params[2]].valid)
+    if (DRAM::activeRequest != DRAM_Req::null && DRAM::activeRequest.req.load && DRAM::activeRequest.req.reg == params[2] && DRAM::activeRequest.req.busy)
     {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+
+    // If the register to be written has a request in loadQu then delete the request
+    if (loadQu[params[2]].valid && DRAM::tempRequest.req != loadQu[params[2]])
+    {
+        if (bestRequest == loadQu[params[2]])
+        {
+            bestRequest.valid = false;
+        }
         loadQu[params[2]].valid = false;
         instruction_count[lw]++;
         pendingRequests--;
+    }
+    else if (loadQu[params[2]].valid)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
+    }
+    else if (!loadQu[params[2]].valid && loadQu[params[2]].busy)
+    {
+        waitReg[params[2]] = true;
+        current--;
+        return;
     }
 
     register_file[params[2]] = ((int) register_file[params[0]]) <  ((int) register_file[params[1]]);
@@ -290,7 +409,6 @@ void Core::executeLw(std::vector<unsigned int> &params)
     if (loadQu[params[2]].busy)
     {
         waitReg[params[2]] = true;
-        waitMem = address;
         current--;
         return;
     }
@@ -418,6 +536,11 @@ void Core::addRequest(Request req)
         if (loadQu[req.reg].valid)
         {// Already request present then overwrite
             
+            if (bestRequest == loadQu[req.reg])
+            {
+                bestRequest.valid = false;
+            }
+
             // Decrease number of pending request
             pendingRequests--;
             instruction_count[lw]++;
@@ -429,6 +552,11 @@ void Core::addRequest(Request req)
         if (saveQu[req.address % saveQuBufferLength].valid)
         {// Already request present then overwrite
             
+            if (bestRequest == saveQu[req.address % saveQuBufferLength])
+            {
+                bestRequest.valid = false;
+            }
+
             // Decrease number of pending request
             pendingRequests--;
             instruction_count[sw]++;
