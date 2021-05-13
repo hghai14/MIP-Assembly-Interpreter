@@ -114,7 +114,7 @@ public:
     static std::map<int, std::string> num_to_reg;
 
     // Size of save buffer
-    static const int saveQuBufferLength = 1024;
+    static const int saveQuBufferLength = 32;
 
     // Write port is busy or not
     bool writeBusy;
