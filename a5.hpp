@@ -125,6 +125,9 @@ public:
     // To check if the memory is waiting
     unsigned int waitMem;
 
+    // Busy mem value set only when a request is in DRAM, else -1;
+    unsigned int busyMem;
+
     // Load buffer
     Request loadQu[32];
 

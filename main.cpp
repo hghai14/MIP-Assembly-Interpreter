@@ -126,7 +126,7 @@ Core::Core(std::string path, unsigned int core_num)
     memset(waitReg, 0, sizeof(waitReg));
 
     // Memory address waiting
-    waitMem = -1;
+    waitMem = busyMem = -1;
 
     // Reseting load request qu
     memset(loadQu, 0, sizeof(loadQu));
