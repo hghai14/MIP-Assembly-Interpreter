@@ -51,9 +51,9 @@ void Core::executeAddi(std::vector<unsigned int> &params)
     {
         if (bestRequest == loadQu[params[1]])
         {
-            bestRequest.valid = false;
+            bestRequest = Request::null;
         }
-        loadQu[params[1]].valid = false;
+        loadQu[params[1]] = Request::null;
         instruction_count[lw]++;
         pendingRequests--;
     }
@@ -124,9 +124,9 @@ void Core::executeAdd(std::vector<unsigned int> &params)
     {
         if (bestRequest == loadQu[params[2]])
         {
-            bestRequest.valid = false;
+            bestRequest = Request::null;
         }
-        loadQu[params[2]].valid = false;
+        loadQu[params[2]] = Request::null;
         instruction_count[lw]++;
         pendingRequests--;
     }
@@ -181,9 +181,9 @@ void Core::executeSub(std::vector<unsigned int> &params)
     {
         if (bestRequest == loadQu[params[2]])
         {
-            bestRequest.valid = false;
+            bestRequest = Request::null;
         }
-        loadQu[params[2]].valid = false;
+        loadQu[params[2]] = Request::null;
         instruction_count[lw]++;
         pendingRequests--;
     }
@@ -238,9 +238,9 @@ void Core::executeMul(std::vector<unsigned int> &params)
     {
         if (bestRequest == loadQu[params[2]])
         {
-            bestRequest.valid = false;
+            bestRequest = Request::null;
         }
-        loadQu[params[2]].valid = false;
+        loadQu[params[2]] = Request::null;
         instruction_count[lw]++;
         pendingRequests--;
     }
@@ -295,9 +295,9 @@ void Core::executeSlt(std::vector<unsigned int> &params)
     {
         if (bestRequest == loadQu[params[2]])
         {
-            bestRequest.valid = false;
+            bestRequest = Request::null;
         }
-        loadQu[params[2]].valid = false;
+        loadQu[params[2]] = Request::null;
         instruction_count[lw]++;
         pendingRequests--;
     }
@@ -538,7 +538,7 @@ void Core::addRequest(Request req)
             
             if (bestRequest == loadQu[req.reg])
             {
-                bestRequest.valid = false;
+                bestRequest = Request::null;
             }
 
             // Decrease number of pending request
@@ -554,7 +554,7 @@ void Core::addRequest(Request req)
             
             if (bestRequest == saveQu[req.address % saveQuBufferLength])
             {
-                bestRequest.valid = false;
+                bestRequest = Request::null;
             }
 
             // Decrease number of pending request
