@@ -221,7 +221,7 @@ DRAM_Req DRAM::getNextRequest()
             best_c = c;
             waitReg = false;
         }
-        else if (c->waitMem == r.address && waitReg)
+        else if (c->waitMem > 0 && waitReg)
         {
             best = r;
             best_c = c;

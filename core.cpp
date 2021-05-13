@@ -290,7 +290,6 @@ void Core::executeLw(std::vector<unsigned int> &params)
     if (loadQu[params[2]].busy)
     {
         waitReg[params[2]] = true;
-        waitMem = address;
         current--;
         return;
     }
