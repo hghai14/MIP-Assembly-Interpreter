@@ -295,42 +295,39 @@ void Core::executeLw(std::vector<unsigned int> &params)
         return;
     }
 
-    // Forwarding
-    if (saveQu[address % saveQuBufferLength].busy)
-    {// If memory to be loaded from is to be written
-
-        // Check if the request to be written on the same address and the write is not busy
-        if (saveQu[address % saveQuBufferLength].address == address && !writeBusy)
-        {
-            // Write the value directly from the wait buffer
-            register_file[params[0]] = saveQu[address % saveQuBufferLength].reg;
-
-            // Set message
-            message = "Forwarded save instruction at address " + std::to_string(address) + " to load the value in register " + num_to_reg[params[0]];
-            
-            // Increase instruction count
-            instruction_count[lw]++;
-            return;
-        }
-        else if (saveQu[address % saveQuBufferLength].address == address && writeBusy)
-        {// If write is busy and at the same address, then write in next cycle
-            
-            // Set the forward value and and forward signal
-            forward_value = saveQu[address % saveQuBufferLength].reg;
-            forward = true;
-            current--;
-            return;
-        }
-    }
-    else if (forward)
+    if (forward)
     {// If to be forward then forward
         register_file[params[0]] = forward_value;
         message = "Forwarded save instruction at address " + std::to_string(address) + " to load the value in register " + num_to_reg[params[0]];
         instruction_count[lw]++;
-        
+        busyMem = -1;
         // Reset forward signals
         forward_value = -1;
         forward = false;
+        return;
+    }
+
+    // Check if the request to be written on the same address and the write is not busy
+    if (saveQu[address % saveQuBufferLength].address == address && !writeBusy)
+    {
+        // Write the value directly from the wait buffer
+        register_file[params[0]] = saveQu[address % saveQuBufferLength].reg;
+
+        // Set message
+        message = "Forwarded save instruction at address " + std::to_string(address) + " to load the value in register " + num_to_reg[params[0]];
+
+        // Increase instruction count
+        instruction_count[lw]++;
+        busyMem = -1;
+        return;
+    }
+    else if (saveQu[address % saveQuBufferLength].address == address && writeBusy)
+    {// If write is busy and at the same address, then write in next cycle
+        
+        // Set the forward value and and forward signal
+        forward_value = saveQu[address % saveQuBufferLength].reg;
+        forward = true;
+        current--;
         return;
     }
 
@@ -452,7 +449,7 @@ void Core::setBestRequest()
     // Load best
     for (int i = 0; i < 32; i++)
     {
-        if (!loadQu[i].valid)
+        if (!loadQu[i].valid || loadQu[i].address == busyMem)
         {
             continue;
         }

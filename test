@@ -1,5 +1,11 @@
 main:
     addi $t0, $t0, 100
     sw $t0, 100($zero)
-    lw $t1, 0($t0)
-    addi $t1, $t3, 100
+    addi $s0, $s0, 100
+    addi $s0, $s0, 100
+    addi $s0, $s0, 100
+    sw $s0, 132($zero)
+    lw $t1, 100($t1)
+    addi $s0, $s0, 100
+    addi $s0, $s0, 100
+    addi $s0, $s0, 100

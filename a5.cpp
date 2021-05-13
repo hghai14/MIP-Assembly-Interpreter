@@ -118,7 +118,7 @@ bool DRAM::execute()
         Core *c= activeRequest.core;
 
         c->writeBusy = false;
-        c->waitMem = -1;
+        c->busyMem = -1;
 
         if (r.load && !c->loadQu[r.reg].valid && c->loadQu[r.reg].busy &&
             c->loadQu[r.reg].address == r.address)
@@ -157,6 +157,7 @@ bool DRAM::execute()
                 c->saveQu[r.address % Core::saveQuBufferLength].reg == r.reg)
         {
             c->saveQu[r.address % Core::saveQuBufferLength].valid = false;
+            c->busyMem = r.address;
         }
 
         // Set the wait cycles left
