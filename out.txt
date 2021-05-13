@@ -19,7 +19,7 @@ Core 0: Add immediate instruction executed, s1 = zero + 100 = 100
 DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
 
 Cycle: 6
-Core 0: Load word instruction generated for DRAM from memory address 100 to the register s0
+Core 0: Stalled
 DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
 
 Cycle: 7
@@ -59,18 +59,6 @@ Core 0: Stalled
 DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
 
 Cycle: 16
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 17
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 18
-Core 0: Stalled
-DRAM: Free
-
-Cycle: 19
 Core 0: Add immediate instruction executed, s0 = zero + 100 = 100
 DRAM: Free
 
@@ -119,9 +107,9 @@ mul	0
 beq	0
 bne	0
 slt	0
-lw	2
+lw	1
 sw	0
 addi	5
 
 
-Throughput: 0.35 Instructions per cycle
+Throughput: 0.352941 Instructions per cycle
