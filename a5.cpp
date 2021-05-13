@@ -100,6 +100,7 @@ void DRAM::process()
 
         c->pendingRequests--;
         activeRequest.core->writeBusy = true;
+        activeRequest.req.busy = false;
 
         // Set the busy to false
         busy = false;
@@ -183,13 +184,12 @@ bool DRAM::execute()
     }
 
     tempRequest = getNextRequest();
+    // std::cout << tempRequest.req.load << " " << tempRequest.req.reg << " " << tempRequest.req.valid << std::endl;
 
     if (tempRequest != DRAM_Req::null)
     {
         f = true;
     }
-
-    // std::cout << tempRequest.req.load << " " << tempRequest.req.reg << " " << tempRequest.req.valid << std::endl;
 
     return f;
 }
@@ -204,6 +204,8 @@ DRAM_Req DRAM::getNextRequest()
     for (Core *c : cores)
     {
         Request r = c->getNextRequest();
+        c->setBestRequest();
+        
         if (!r.valid)
         {
             continue;
