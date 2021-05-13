@@ -42,7 +42,8 @@ void Core::executeAddi(std::vector<unsigned int> &params)
     // If the register to be written has a request in loadQu then delete the request
     if (loadQu[params[1]].valid)
     {
-        loadQu[params[1]] = Request::null;
+        loadQu[params[1]].valid = false;
+        instruction_count[lw]++;
         pendingRequests--;
     }
 
@@ -90,7 +91,8 @@ void Core::executeAdd(std::vector<unsigned int> &params)
 
     if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = Request::null;
+        loadQu[params[2]].valid = false;
+        instruction_count[lw]++;
         pendingRequests--;
     }
 
@@ -122,7 +124,8 @@ void Core::executeSub(std::vector<unsigned int> &params)
 
     if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = Request::null;
+        loadQu[params[2]].valid = false;
+        instruction_count[lw]++;
         pendingRequests--;
     }
 
@@ -154,7 +157,8 @@ void Core::executeMul(std::vector<unsigned int> &params)
 
     if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = Request::null;
+        loadQu[params[2]].valid = false;
+        instruction_count[lw]++;
         pendingRequests--;
     }
 
@@ -186,7 +190,8 @@ void Core::executeSlt(std::vector<unsigned int> &params)
 
     if (loadQu[params[2]].valid)
     {
-        loadQu[params[2]] = Request::null;
+        loadQu[params[2]].valid = false;
+        instruction_count[lw]++;
         pendingRequests--;
     }
 
@@ -418,6 +423,7 @@ void Core::addRequest(Request req)
             
             // Decrease number of pending request
             pendingRequests--;
+            instruction_count[lw]++;
         }
         loadQu[req.reg] = req;
     }
@@ -428,6 +434,7 @@ void Core::addRequest(Request req)
             
             // Decrease number of pending request
             pendingRequests--;
+            instruction_count[sw]++;
         }
         saveQu[req.address % saveQuBufferLength] = req;
     }
@@ -568,6 +575,8 @@ void Core::setBestRequest()
     {
         bestRequest = Request::null;
     }
+
+    // std::cout << bestRequest.load << " " << bestRequest.reg << " " << bestRequest.valid << std::endl;
 }
 
 Request Core::getNextRequest()
