@@ -154,6 +154,9 @@ public:
     // Base address of the memory allocated to the core
     unsigned int base_address;
 
+    // Band width
+    unsigned int band_width;
+
     // Register file
     unsigned int register_file[32];
 

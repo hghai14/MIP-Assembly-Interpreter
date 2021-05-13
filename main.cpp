@@ -107,6 +107,7 @@ Core::Core(std::string path, unsigned int core_num)
 
     // Base address of the memory allocated to this core
     this->base_address = core_num * (((unsigned int)pow(2, 18)) / n) * 4;
+    this->band_width = (((unsigned int)pow(2, 18)) / n) * 4;
 
     // Parse pointer to allocate memory
     this->curParsePointer = 0;
