@@ -7,70 +7,10 @@ Core 0: Load word instruction generated for DRAM from memory address 100 to the 
 DRAM: Free
 
 Cycle: 3
-Core 0: Add immediate instruction executed, s1 = zero + 100 = 100
+Core 0: Add immediate instruction executed, s0 = zero + 100 = 100
 DRAM: Free
 
 Cycle: 4
-Core 0: Add immediate instruction executed, s1 = zero + 100 = 100
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 5
-Core 0: Add immediate instruction executed, s1 = zero + 100 = 100
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 6
-Core 0: Load word instruction generated for DRAM from memory address 100 to the register s0
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 7
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 8
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 9
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 10
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 11
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 12
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 13
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Row 0 access --- Core 0
-
-Cycle: 14
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 15
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 16
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 17
-Core 0: Stalled
-DRAM: Load request to register s0 from address 100: Column 100 access --- Core 0
-
-Cycle: 18
-Core 0: Stalled
-DRAM: Free
-
-Cycle: 19
 Core 0: Add immediate instruction executed, s0 = zero + 100 = 100
 DRAM: Free
 
@@ -94,7 +34,7 @@ R13	t5	0x00000000	0
 R14	t6	0x00000000	0
 R15	t7	0x00000000	0
 R16	s0	0x00000064	100
-R17	s1	0x00000064	100
+R17	s1	0x00000000	0
 R18	s2	0x00000000	0
 R19	s3	0x00000000	0
 R20	s4	0x00000000	0
@@ -119,9 +59,9 @@ mul	0
 beq	0
 bne	0
 slt	0
-lw	2
+lw	1
 sw	0
-addi	5
+addi	3
 
 
-Throughput: 0.35 Instructions per cycle
+Throughput: 0.8 Instructions per cycle

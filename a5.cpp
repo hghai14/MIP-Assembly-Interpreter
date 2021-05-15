@@ -102,22 +102,6 @@ void DRAM::process()
         activeRequest.core->writeBusy = true;
         activeRequest.req.busy = false;
 
-        // Set the busy to false
-        busy = false;
-    }
-}
-
-bool DRAM::execute()
-{
-    message = "Free";
-
-    bool f = false;
-
-    if (!busy && activeRequest != DRAM_Req::null)
-    {
-        Request r = activeRequest.req;
-        Core *c= activeRequest.core;
-
         c->writeBusy = false;
         c->busyMem = -1;
 
@@ -133,7 +117,17 @@ bool DRAM::execute()
         {
             c->saveQu[r.address % Core::saveQuBufferLength].busy = false;
         }
+
+        // Set the busy to false
+        busy = false;
     }
+}
+
+bool DRAM::execute()
+{
+    message = "Free";
+
+    bool f = false;
 
     // std::cout << (tempRequest != DRAM_Req::null) << std::endl;
     
