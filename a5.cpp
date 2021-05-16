@@ -224,6 +224,7 @@ DRAM_Req DRAM::getNextRequest()
     Request best = Request::null;
     Core *best_c = nullptr;
     bool waitReg = true;
+    bool sameRow = true;
 
     Request row_miss_request = Request::null;
     Core *row_miss_c = nullptr;
@@ -257,13 +258,19 @@ DRAM_Req DRAM::getNextRequest()
             continue;
         }
 
-        if (r.row == activeRow)
+        if (r.row == activeRow && c->waitReg[r.reg])
         {
             best = r;
             best_c = c;
             break;
         }
-        else if (c->waitReg[r.reg])
+        else if (r.row == activeRow)
+        {
+            best = r;
+            best_c = c;
+            sameRow = true;
+        }
+        else if (c->waitReg[r.reg] && sameRow)
         {
             best = r;
             best_c = c;
