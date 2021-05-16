@@ -53,11 +53,11 @@ void DRAM::process()
     if (activeRequest.req.load)
     {
         message = "Load request to register " + Core::num_to_reg[activeRequest.req.reg] + 
-                    " from address " + std::to_string(activeRequest.req.address);
+                    " from address " + std::to_string(activeRequest.req.address - activeRequest.core->base_address);
     }
     else
     {
-        message = "Save request to adrress " + std::to_string(activeRequest.req.address) + " of value " + 
+        message = "Save request to adrress " + std::to_string(activeRequest.req.address - activeRequest.core->base_address) + " of value " + 
                     std::to_string(activeRequest.req.reg);
     }
 
@@ -223,8 +223,11 @@ DRAM_Req DRAM::getNextRequest()
 {
     Request best = Request::null;
     Core *best_c = nullptr;
-    bool waitReg = true;
+
+    // To consider priority in the same order as declaration
     bool sameRow = true;
+    bool waitMem = true;
+    bool waitReg = true;
 
     Request row_miss_request = Request::null;
     Core *row_miss_c = nullptr;
@@ -268,9 +271,18 @@ DRAM_Req DRAM::getNextRequest()
         {
             best = r;
             best_c = c;
-            sameRow = true;
+            sameRow = false;
+            waitMem = false;
+            waitReg = false;
         }
-        else if (c->waitReg[r.reg] && sameRow)
+        else if (r.address == c->waitMem && sameRow)
+        {
+            best = r;
+            best_c = c;
+            waitMem = false;
+            waitReg = false;
+        }
+        else if (c->waitReg[r.reg] && waitMem)
         {
             best = r;
             best_c = c;

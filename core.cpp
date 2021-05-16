@@ -395,6 +395,14 @@ void Core::executeLw(std::vector<unsigned int> &params)
     // True if forwarding possible
     static bool forward = false;
 
+    if (params[0] == 0)
+    {
+        message = "Ignored load request at $zero register";
+        instruction_count[lw]++;
+        busyMem = -1;
+        waitReg[params[2]] = false;
+    }
+
     // Address calculation and validation
     params[1] = params[1] << 16;
     int params1 = (int)params[1];
@@ -477,6 +485,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
         if (saveQu[address % saveQuBufferLength].address != address)
         {// If different address busy then stall
             current--;
+            waitMem = saveQu[address % saveQuBufferLength].address;
             return;
         }
     }
@@ -497,6 +506,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
                 " from the register " + num_to_reg[params[0]];
 
     waitReg[params[0]] = waitReg[params[2]] = false;
+    waitMem = -1;
 }
 
 // Funciton to execute the commands
@@ -575,7 +585,7 @@ void Core::setBestRequest()
     int saveNorm = -1;
 
     // Load best
-    for (int i = 0; i < 32; i++)
+    for (int i = 31; i >= 0; i--)
     {
         if (!loadQu[i].valid || loadQu[i].address == busyMem)
         {
@@ -598,7 +608,7 @@ void Core::setBestRequest()
     }
 
     // Save best
-    for (int i = 0; i < Core::saveQuBufferLength; i++)
+    for (int i = Core::saveQuBufferLength - 1; i >= 0; i--)
     {
         if (!saveQu[i].valid)
         {
