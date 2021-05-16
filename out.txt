@@ -86,745 +86,745 @@ Cycle: 15
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 16
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 17
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 18
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 19
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 20
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 21
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 22
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 23
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 24
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 0 writeback --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 0 writeback --- Core 0
 
 Cycle: 25
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 26
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 27
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 28
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 29
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 30
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 31
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 32
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 33
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 34
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
 
 Cycle: 35
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Column 928 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Column 976 access --- Core 0
 
 Cycle: 36
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t3 from address 4000: Column 928 access --- Core 0
+DRAM: Load request to register t1 from address 2000: Column 976 access --- Core 0
 
 Cycle: 37
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 38
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 39
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 40
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 41
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 42
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 43
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 44
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 45
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 46
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 3 writeback --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 1 writeback --- Core 1
 
 Cycle: 47
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 48
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 49
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 50
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 51
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 52
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 53
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 54
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 55
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 56
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Row 342 access --- Core 1
 
 Cycle: 57
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Column 268 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Column 320 access --- Core 1
 
 Cycle: 58
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t2 from address 3000: Column 268 access --- Core 1
+DRAM: Load request to register t0 from address 1004: Column 320 access --- Core 1
 
 Cycle: 59
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t1 from address 1000: Column 316 access --- Core 1
 
 Cycle: 60
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t1 from address 1000: Column 316 access --- Core 1
 
 Cycle: 61
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 62
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 63
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 64
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 65
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 66
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 67
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 68
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 344 writeback --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 69
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 70
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 342 writeback --- Core 1
 
 Cycle: 71
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 72
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 73
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 74
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 75
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 76
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 77
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 78
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Row 342 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 79
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Column 316 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 80
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t1 from address 1000: Column 316 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Row 344 access --- Core 1
 
 Cycle: 81
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1004: Column 320 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Column 268 access --- Core 1
 
 Cycle: 82
 Core 0: Stalled
 Core 1: Stalled
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1004: Column 320 access --- Core 1
+DRAM: Load request to register t2 from address 3000: Column 268 access --- Core 1
 
 Cycle: 83
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 84
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 85
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 86
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 87
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 88
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 89
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 90
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 91
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 92
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 342 writeback --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 344 writeback --- Core 2
 
 Cycle: 93
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 94
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 95
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 96
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 97
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 98
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 99
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 100
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 101
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 102
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Row 684 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
 
 Cycle: 103
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
 
 Cycle: 104
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
+DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
 
 Cycle: 105
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 106
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 107
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 108
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 109
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 110
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 111
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 112
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 113
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 114
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 683 writeback --- Core 2
 
 Cycle: 115
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 116
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 684 writeback --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 117
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 118
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 119
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 120
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 121
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 122
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 123
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 124
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
 
 Cycle: 125
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
 
 Cycle: 126
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
+DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
 
 Cycle: 127
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
+DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
 
 Cycle: 128
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
+DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
 
 Cycle: 129
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 130
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 131
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 132
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 133
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 134
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 135
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 136
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 137
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 138
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t2 from address 3000: Row 683 writeback --- Core 0
+DRAM: Load request to register t2 from address 3000: Row 684 writeback --- Core 0
 
 Cycle: 139
 Core 0: Stalled
@@ -902,133 +902,133 @@ Cycle: 151
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 152
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 153
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 154
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 155
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 156
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 157
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 158
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 159
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 160
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 2 writeback --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 2 writeback --- Core 0
 
 Cycle: 161
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 162
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 163
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 164
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 165
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 166
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 167
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 168
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 169
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 170
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Row 1 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Row 3 access --- Core 0
 
 Cycle: 171
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Column 976 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Column 928 access --- Core 0
 
 Cycle: 172
 Core 0: Stalled
 Core 1: Finshed
 Core 2: Finshed
-DRAM: Load request to register t1 from address 2000: Column 976 access --- Core 0
+DRAM: Load request to register t3 from address 4000: Column 928 access --- Core 0
 
 Core 0 process data: 
 
