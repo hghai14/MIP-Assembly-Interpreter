@@ -485,6 +485,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
         if (saveQu[address % saveQuBufferLength].address != address)
         {// If different address busy then stall
             current--;
+            waitMem = saveQu[address % saveQuBufferLength].address;
             return;
         }
     }
@@ -505,6 +506,7 @@ void Core::executeSw(std::vector<unsigned int> &params)
                 " from the register " + num_to_reg[params[0]];
 
     waitReg[params[0]] = waitReg[params[2]] = false;
+    waitMem = -1;
 }
 
 // Funciton to execute the commands
