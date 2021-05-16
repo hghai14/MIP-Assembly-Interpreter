@@ -1,62 +1,207 @@
 Cycle: 1
-Core 0: Load word instruction generated for DRAM from memory address 1000 to the register t0
+Core 0: Load word instruction generated for DRAM from memory address 1000 to the register t3
+Core 1: Load word instruction generated for DRAM from memory address 1000 to the register t0
 DRAM: Free
 
 Cycle: 2
-Core 0: Add immediate instruction executed, t1 = zero + 100 = 100
+Core 0: Save word instruction generated for DRAM to memory address 32 from the register t0
+Core 1: Stalled
 DRAM: Free
 
 Cycle: 3
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 4
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 5
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 6
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 7
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 8
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 9
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 10
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 11
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 12
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Row 0 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Row 512 access --- Core 1
 
 Cycle: 13
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Column 1000 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Column 1000 access --- Core 1
 
 Cycle: 14
 Core 0: Stalled
-DRAM: Load request to register t0 from address 1000: Column 1000 access --- Core 0
+Core 1: Stalled
+DRAM: Load request to register t0 from address 525288: Column 1000 access --- Core 1
 
 Cycle: 15
-Core 0: Add immediate instruction executed, t0 = zero + 100 = 100
+Core 0: Stalled
+Core 1: Add immediate instruction executed, t0 = t0 + 1000 = 1000
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 16
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 17
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 18
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 19
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 20
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 21
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 22
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 23
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 24
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 512 writeback --- Core 0
+
+Cycle: 25
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 26
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 27
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 28
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 29
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 30
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 31
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 32
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 33
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 34
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Row 0 access --- Core 0
+
+Cycle: 35
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Column 1000 access --- Core 0
+
+Cycle: 36
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Load request to register t3 from address 1000: Column 1000 access --- Core 0
+
+Cycle: 37
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Save request to adrress 32 of value 0: Column 32 access --- Core 0
+
+Cycle: 38
+Core 0: Save word instruction generated for DRAM to memory address 64 from the register t1
+Core 1: Finshed
+DRAM: Save request to adrress 32 of value 0: Column 32 access --- Core 0
+
+Cycle: 39
+Core 0: Stalled
+Core 1: Finshed
 DRAM: Free
+
+Cycle: 40
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Save request to adrress 64 of value 0: Column 64 access --- Core 0
+
+Cycle: 41
+Core 0: Stalled
+Core 1: Finshed
+DRAM: Save request to adrress 64 of value 0: Column 64 access --- Core 0
 
 Core 0 process data: 
 
@@ -69,8 +214,8 @@ R4	a0	0x00000000	0
 R5	a1	0x00000000	0
 R6	a2	0x00000000	0
 R7	a3	0x00000000	0
-R8	t0	0x00000064	100
-R9	t1	0x00000064	100
+R8	t0	0x00000000	0
+R9	t1	0x00000000	0
 R10	t2	0x00000000	0
 R11	t3	0x00000000	0
 R12	t4	0x00000000	0
@@ -104,8 +249,57 @@ beq	0
 bne	0
 slt	0
 lw	1
+sw	2
+addi	0
+
+Core 1 process data: 
+
+Register file of core 1
+R0	zero	0x00000000	0
+R1	at	0x00000000	0
+R2	v0	0x00000000	0
+R3	v1	0x00000000	0
+R4	a0	0x00000000	0
+R5	a1	0x00000000	0
+R6	a2	0x00000000	0
+R7	a3	0x00000000	0
+R8	t0	0x000003e8	1000
+R9	t1	0x00000000	0
+R10	t2	0x00000000	0
+R11	t3	0x00000000	0
+R12	t4	0x00000000	0
+R13	t5	0x00000000	0
+R14	t6	0x00000000	0
+R15	t7	0x00000000	0
+R16	s0	0x00000000	0
+R17	s1	0x00000000	0
+R18	s2	0x00000000	0
+R19	s3	0x00000000	0
+R20	s4	0x00000000	0
+R21	s5	0x00000000	0
+R22	s6	0x00000000	0
+R23	s7	0x00000000	0
+R24	t8	0x00000000	0
+R25	t9	0x00000000	0
+R26	k0	0x00000000	0
+R27	k1	0x00000000	0
+R28	gp	0x00000000	0
+R29	sp	0x00080000	524288
+R30	fp	0x00000000	0
+R31	ra	0x00000000	0
+
+Number of times each instruction is executed: 
+
+j	0
+add	0
+sub	0
+mul	0
+beq	0
+bne	0
+slt	0
+lw	1
 sw	0
-addi	2
+addi	1
 
 
-Throughput: 0.1875 Instructions per cycle
+Throughput: 0.119048 Instructions per cycle

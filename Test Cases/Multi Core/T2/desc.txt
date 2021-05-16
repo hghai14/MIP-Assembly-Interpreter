@@ -1,0 +1,1 @@
+In this case we check the selection of load word request in cases when no best request is found.
