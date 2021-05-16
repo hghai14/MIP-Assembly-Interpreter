@@ -223,8 +223,11 @@ DRAM_Req DRAM::getNextRequest()
 {
     Request best = Request::null;
     Core *best_c = nullptr;
-    bool waitReg = true;
+
+    // To consider priority in the same order as declaration
     bool sameRow = true;
+    bool waitMem = true;
+    bool waitReg = true;
 
     Request row_miss_request = Request::null;
     Core *row_miss_c = nullptr;
@@ -269,9 +272,17 @@ DRAM_Req DRAM::getNextRequest()
             best = r;
             best_c = c;
             sameRow = false;
+            waitMem = false;
             waitReg = false;
         }
-        else if (c->waitReg[r.reg] && sameRow)
+        else if (r.address == c->waitMem && sameRow)
+        {
+            best = r;
+            best_c = c;
+            waitMem = false;
+            waitReg = false;
+        }
+        else if (c->waitReg[r.reg] && waitMem)
         {
             best = r;
             best_c = c;
