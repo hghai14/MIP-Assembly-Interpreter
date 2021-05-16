@@ -53,11 +53,11 @@ void DRAM::process()
     if (activeRequest.req.load)
     {
         message = "Load request to register " + Core::num_to_reg[activeRequest.req.reg] + 
-                    " from address " + std::to_string(activeRequest.req.address);
+                    " from address " + std::to_string(activeRequest.req.address - activeRequest.core->base_address);
     }
     else
     {
-        message = "Save request to adrress " + std::to_string(activeRequest.req.address) + " of value " + 
+        message = "Save request to adrress " + std::to_string(activeRequest.req.address - activeRequest.core->base_address) + " of value " + 
                     std::to_string(activeRequest.req.reg);
     }
 
@@ -268,7 +268,8 @@ DRAM_Req DRAM::getNextRequest()
         {
             best = r;
             best_c = c;
-            sameRow = true;
+            sameRow = false;
+            waitReg = false;
         }
         else if (c->waitReg[r.reg] && sameRow)
         {
