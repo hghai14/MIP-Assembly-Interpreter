@@ -142,6 +142,9 @@ public:
     // Number of pending requests
     int pendingRequests;
 
+    // Row misses
+    int row_miss = 0;
+
     // Processor is active or not, inactive in case of compilation or execution error
     bool active;
 
@@ -279,6 +282,9 @@ public:
     static int writeLeft;
     static int rowLeft;
     static int colLeft;
+    static int swapLeft;
+
+    static std::vector<Core *> swap_queue;
 
     // Number of cycles left for mrm
     static int mrmWaitLeft;

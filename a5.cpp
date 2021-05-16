@@ -7,6 +7,8 @@ Request Request::null = Request();
 int DRAM::ROW_ACCESS_DELAY = -1;
 int DRAM::COL_ACCESS_DELAY = -1;
 
+std::vector<Core *> DRAM::swap_queue;
+
 // Active row of DRAM
 int DRAM::activeRow = -1;
 
@@ -134,6 +136,8 @@ bool DRAM::execute()
     if (!busy && tempRequest != DRAM_Req::null)
     {
         f = true;
+
+        bool same = activeRequest.core == tempRequest.core;
         
         activeRequest = tempRequest;
 
@@ -159,6 +163,33 @@ bool DRAM::execute()
         if (activeRequest.req.row != activeRow && activeRow != -1)
         {
             writeLeft = rowLeft = ROW_ACCESS_DELAY;
+
+            if (same)
+            {
+                c->row_miss++;
+
+                int i = 0;
+                while (swap_queue[i] != c)
+                {
+                    i++;
+                }
+
+                int swaps = 0;
+
+                while (i < swap_queue.size()-1)
+                {
+                    if (swap_queue[i]->row_miss > swap_queue[i+1]->row_miss)
+                    {
+                        std::swap(swap_queue[i], swap_queue[i+1]);
+                        i++;
+                        swaps++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
         }
         else if (activeRow == -1)
         {
@@ -193,11 +224,32 @@ DRAM_Req DRAM::getNextRequest()
     Request best = Request::null;
     Core *best_c = nullptr;
     bool waitReg = true;
-    bool waitMem = true;
+
+    Request row_miss_request = Request::null;
+    Core *row_miss_c = nullptr;
+    int min_row_miss = INT32_MAX;
+
+    for (int i = 0; i < swap_queue.size(); i++)
+    {
+        Request r = swap_queue[i]->getNextRequest();
+
+        if (!r.valid)
+        {
+            continue;
+        }
+
+        if (swap_queue[i]->row_miss < min_row_miss)
+        {
+            row_miss_request = r;
+            min_row_miss = swap_queue[i]->row_miss;
+            row_miss_c = swap_queue[i];
+        }
+    }
 
     for (Core *c : cores)
     {
         Request r = c->getNextRequest();
+        
         c->setBestRequest();
         
         if (!r.valid)
@@ -217,17 +269,17 @@ DRAM_Req DRAM::getNextRequest()
             best_c = c;
             waitReg = false;
         }
-        else if (c->waitMem > 0 && waitReg)
-        {
-            best = r;
-            best_c = c;
-            waitMem = false;
-        }
-        else if (waitMem && waitReg)
+        else if (waitReg)
         {
             best = r;
             best_c = c;
         }
+    }
+
+    if (waitReg)
+    {
+        best = row_miss_request;
+        best_c = row_miss_c;
     }
 
     if (!best.valid)

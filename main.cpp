@@ -189,6 +189,7 @@ int main(int argc, char *argv[])
 
         // Push the core in the vector
         DRAM::cores.push_back(new Core(path, (unsigned int) i));
+        DRAM::swap_queue.push_back(DRAM::cores.back());
 
         // Try compiling the core
         try
