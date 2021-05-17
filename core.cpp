@@ -479,6 +479,20 @@ void Core::executeSw(std::vector<unsigned int> &params)
         throwRunTimeError("Invalid memory address: should be aligned with 4", current);
     }
 
+    for (int i = 0; i < 32; i++)
+    {
+        if (!loadQu[i].valid)
+        {
+            continue;
+        }
+        if (loadQu[i].address == address)
+        {
+            current--;
+            waitMem = saveQu[address % saveQuBufferLength].address;
+            return;
+        }
+    }
+
     // Validation
     if (saveQu[address % saveQuBufferLength].valid)
     {// If same address point busy then check

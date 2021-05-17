@@ -1,8 +1,5 @@
 main:
-    sw $t0, 0($zero)
-    lw $t0, 0($zero)
-    addi $s0, $s0, 100
     lw $t1, 100($zero)
-    lw $t1, 200($zero)
-    lw $t1, 300($zero)
+    lw $t0, 0($zero)
+    sw $t1, 0($zero)
 

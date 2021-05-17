@@ -267,7 +267,9 @@ int main(int argc, char *argv[])
     }
 
     // Print throughput
-    std::cout << std::endl << "Throughput: " << (float) totalIntructions / totalCycles << " Instructions per cycle" << std::endl;
+    // std::cout << std::endl << "Throughput: " << (float) totalIntructions / totalCycles << " Instructions per cycle" << std::endl;
+
+    std::cout << std::endl << totalIntructions << " instructions executed in " << totalCycles - 1 << " cycles" << std::endl;
     
     // std::cout << std::endl << "Throughput: " << totalIntructions << " Instructions per cycle" << std::endl;
 
