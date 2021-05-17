@@ -1,0 +1,10 @@
+main:
+    addi $t0, $t0, 100
+    j loop
+loop:
+    addi $t1, $t1, 10
+    addi $t4, $t4, 200
+    sw $t1, 0($t4)
+    bne $t1, $t0, loop
+exit:
+    

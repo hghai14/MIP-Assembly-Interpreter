@@ -1,0 +1,10 @@
+main:
+    addi $t2, $t1, 10
+	lw $t1, 1000($zero)
+	sw $t2, 1004($zero)
+	sw $t3, 1004($zero)
+
+    sw $t2, 32($zero)
+	sw $t3, 64($zero)
+
+	add $t0, $t1, $t2

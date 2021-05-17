@@ -1,0 +1,5 @@
+3 1000
+10 2
+./Test Cases/Multi Core/T6/0.txt
+./Test Cases/Multi Core/T6/1.txt
+./Test Cases/Multi Core/T6/2.txt

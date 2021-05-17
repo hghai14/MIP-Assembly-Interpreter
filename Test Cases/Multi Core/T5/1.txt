@@ -1,0 +1,7 @@
+main:
+    lw $t6, 1000($zero)
+    addi $t6, $zero, 100
+    lw $t4, 1004($zero)
+    lw $t5, 1008($zero)
+    addi $t4, $t4, 400
+    

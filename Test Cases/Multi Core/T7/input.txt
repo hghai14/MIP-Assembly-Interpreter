@@ -1,0 +1,4 @@
+2 1000
+10 2
+./Test Cases/Multi Core/T7/0.txt
+./Test Cases/Multi Core/T7/1.txt

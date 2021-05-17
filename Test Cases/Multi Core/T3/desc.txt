@@ -1,0 +1,1 @@
+In this case we check the selection of best request with respect to waiting register or waiting memory block
