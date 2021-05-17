@@ -69,9 +69,9 @@ public:
         valid = false;
         busy = false;
         load = 0;
-        address = 0;
-        reg = 0;
-        row = 0;
+        address = -1;
+        reg = -1;
+        row = -1;
     }
 
     bool operator==(const Request& r)
