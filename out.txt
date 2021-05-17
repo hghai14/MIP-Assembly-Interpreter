@@ -112,4 +112,4 @@ sw	1
 addi	1
 
 
-Throughput: 0.352941 Instructions per cycle
+6 instructions executed in 16 cycles
