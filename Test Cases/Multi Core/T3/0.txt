@@ -1,0 +1,5 @@
+main:
+    lw $t3, 1000($zero)
+    sw $t0, 32($zero)
+    sw $t1, 64($zero)
+    

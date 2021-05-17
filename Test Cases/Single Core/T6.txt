@@ -1,0 +1,7 @@
+main:
+    lw $t0, 1000($zero)
+    lw $t1, 1400($zero)
+    lw $t2, 900($zero)
+	lw $t6, 2004($zero)
+    lw $t3, 2020($zero)
+	mul $t6, $t3, $t6

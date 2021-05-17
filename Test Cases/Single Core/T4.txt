@@ -1,0 +1,6 @@
+main:
+    lw $t0, 1000($zero)
+    lw $t1, 1400($zero)
+    lw $t2, 900($zero)
+    lw $t3, 1020($zero)
+	mul $t6, $t3, $t6

@@ -1,0 +1,2 @@
+In this case we check the selection of load word request in cases when no best request is found. This must be done on basis of row misses.
+We also check for row benifit.

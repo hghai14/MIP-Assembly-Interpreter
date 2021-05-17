@@ -1,0 +1,8 @@
+All these test cases check single core functionility
+
+T1 -> To Check for selection of best request using row benifit.
+T2 -> Redundant lw instruction and overriding Instructions
+T3 -> Redundant sw instruction and Waiting memory block
+T4 -> Waiting register priority
+T5 -> Ordering + Multiple waiting registers
+T6 -> Ordering + Waiting register, but priority is given to same row number access

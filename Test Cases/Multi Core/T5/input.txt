@@ -1,0 +1,8 @@
+6 1000
+10 2
+./Test Cases/Multi Core/T5/0.txt
+./Test Cases/Multi Core/T5/1.txt
+./Test Cases/Multi Core/T5/2.txt
+./Test Cases/Multi Core/T5/3.txt
+./Test Cases/Multi Core/T5/4.txt
+./Test Cases/Multi Core/T5/5.txt
