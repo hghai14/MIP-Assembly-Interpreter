@@ -1,3 +1,4 @@
 main:
     sw $t0, 0($zero)
     sw $t1, 1056($zero)
+    

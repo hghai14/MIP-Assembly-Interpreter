@@ -3,6 +3,8 @@
 DRAM_Req DRAM_Req::null = DRAM_Req();
 Request Request::null = Request();
 
+bool DRAM::row_changed = false;
+
 // Row and column access delay
 int DRAM::ROW_ACCESS_DELAY = -1;
 int DRAM::COL_ACCESS_DELAY = -1;
@@ -96,6 +98,10 @@ void DRAM::process()
         }
         else
         {
+            if (memory[r.address / 4] != r.reg)
+            {
+                row_changed = true;
+            }
             memory[r.address / 4] = r.reg;
             c->instruction_count[sw]++;
         }
@@ -144,7 +150,7 @@ bool DRAM::execute()
         Request r = activeRequest.req;
         Core *c= activeRequest.core;
 
-        writeLeft = rowLeft = 0;
+        writeLeft = rowLeft = colLeft = 0;
 
         if (r.load && c->loadQu[r.reg].valid&&
             c->loadQu[r.reg].address == r.address)
@@ -162,7 +168,14 @@ bool DRAM::execute()
         // Set the wait cycles left
         if (activeRequest.req.row != activeRow && activeRow != -1)
         {
-            writeLeft = rowLeft = ROW_ACCESS_DELAY;
+            rowLeft = ROW_ACCESS_DELAY;
+
+            if (row_changed)
+            {
+                writeLeft = ROW_ACCESS_DELAY;
+            }
+
+            row_changed = false;
 
             if (same)
             {
@@ -225,6 +238,8 @@ DRAM_Req DRAM::getNextRequest()
     Core *best_c = nullptr;
 
     // To consider priority in the same order as declaration
+    bool both1 = true;
+    bool both2 = true;
     bool sameRow = true;
     bool waitReg = true;
     bool waitMem = true;
@@ -265,9 +280,22 @@ DRAM_Req DRAM::getNextRequest()
         {
             best = r;
             best_c = c;
-            break;
+            both1 = false;
+            both2 = false;
+            sameRow = false;
+            waitReg = false;
+            waitMem = false;
         }
-        else if (r.row == activeRow)
+        else if (r.row == activeRow && c->waitMem == r.address && !r.load && both1)
+        {
+            best = r;
+            best_c = c;
+            both2 = false;
+            sameRow = false;
+            waitReg = false;
+            waitMem = false;
+        }
+        else if (r.row == activeRow && both2)
         {
             best = r;
             best_c = c;
@@ -282,7 +310,7 @@ DRAM_Req DRAM::getNextRequest()
             waitReg = false;
             waitMem = false;
         }
-        else if (r.address == c->waitMem && waitReg)
+        else if (r.address == c->waitMem && waitReg && !r.load)
         {
             best = r;
             best_c = c;

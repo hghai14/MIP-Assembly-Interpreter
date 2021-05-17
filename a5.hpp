@@ -284,6 +284,8 @@ public:
     static int colLeft;
     static int swapLeft;
 
+    static bool row_changed;
+
     static std::vector<Core *> swap_queue;
 
     // Number of cycles left for mrm
