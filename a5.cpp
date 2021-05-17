@@ -286,7 +286,7 @@ DRAM_Req DRAM::getNextRequest()
             waitReg = false;
             waitMem = false;
         }
-        else if (r.row == activeRow && c->waitMem == r.address && !r.load && both1)
+        else if (r.row == activeRow && c->waitMem == r.address && both1)
         {
             best = r;
             best_c = c;
@@ -310,7 +310,7 @@ DRAM_Req DRAM::getNextRequest()
             waitReg = false;
             waitMem = false;
         }
-        else if (r.address == c->waitMem && waitReg && !r.load)
+        else if (r.address == c->waitMem && waitReg)
         {
             best = r;
             best_c = c;
