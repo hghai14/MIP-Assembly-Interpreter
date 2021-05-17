@@ -434,7 +434,7 @@ void Core::executeLw(std::vector<unsigned int> &params)
     }
 
     // Check if the request to be written on the same address and the write is not busy
-    if (saveQu[address % saveQuBufferLength].address == address && !writeBusy)
+    if (saveQu[address % saveQuBufferLength].address == address && !writeBusy && saveQu[address % saveQuBufferLength] != Request::null)
     {
         // Write the value directly from the wait buffer
         register_file[params[0]] = saveQu[address % saveQuBufferLength].reg;

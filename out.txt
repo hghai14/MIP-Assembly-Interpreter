@@ -1,386 +1,66 @@
 Cycle: 1
 Core 0: Save word instruction generated for DRAM to memory address 0 from the register t0
-Core 1: Load word instruction generated for DRAM from memory address 1004 to the register t3
-Core 2: Load word instruction generated for DRAM from memory address 1000 to the register t0
 DRAM: Free
 
 Cycle: 2
-Core 0: Stalled
-Core 1: Add instruction executed, t1 = t0 + t0 = 0
-Core 2: Load word instruction generated for DRAM from memory address 2000 to the register t1
+Core 0: Forwarded save instruction at address 0 to load the value in register t0
 DRAM: Free
 
 Cycle: 3
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Load word instruction generated for DRAM from memory address 2004 to the register t2
+Core 0: Add immediate instruction executed, s0 = s0 + 100 = 100
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 4
-Core 0: Save word instruction generated for DRAM to memory address 1056 from the register t1
-Core 1: Stalled
-Core 2: Stalled
+Core 0: Load word instruction generated for DRAM from memory address 100 to the register t1
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 5
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
+Core 0: Load word instruction generated for DRAM from memory address 200 to the register t1
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 6
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
+Core 0: Load word instruction generated for DRAM from memory address 300 to the register t1
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 7
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 8
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 9
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 10
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 11
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 12
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Row 0 access --- Core 0
 
 Cycle: 13
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Column 0 access --- Core 0
 
 Cycle: 14
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
 DRAM: Save request to adrress 0 of value 0: Column 0 access --- Core 0
 
 Cycle: 15
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
+DRAM: Load request to register t1 from address 300: Column 300 access --- Core 0
 
 Cycle: 16
 Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 17
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 18
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 19
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 20
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 21
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 22
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 23
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 24
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Row 1 access --- Core 0
-
-Cycle: 25
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Column 32 access --- Core 0
-
-Cycle: 26
-Core 0: Stalled
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Save request to adrress 1056 of value 0: Column 32 access --- Core 0
-
-Cycle: 27
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 28
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 29
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 30
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 31
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 32
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 33
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 34
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 35
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 36
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Row 342 access --- Core 1
-
-Cycle: 37
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Column 320 access --- Core 1
-
-Cycle: 38
-Core 0: Finshed
-Core 1: Stalled
-Core 2: Stalled
-DRAM: Load request to register t3 from address 1004: Column 320 access --- Core 1
-
-Cycle: 39
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 40
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 41
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 42
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 43
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 44
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 45
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 46
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 47
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 48
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Row 683 access --- Core 2
-
-Cycle: 49
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
-
-Cycle: 50
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t0 from address 1000: Column 656 access --- Core 2
-
-Cycle: 51
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 52
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 53
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 54
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 55
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 56
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 57
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 58
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 59
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 60
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Row 684 access --- Core 2
-
-Cycle: 61
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
-
-Cycle: 62
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t1 from address 2000: Column 632 access --- Core 2
-
-Cycle: 63
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
-
-Cycle: 64
-Core 0: Finshed
-Core 1: Finshed
-Core 2: Stalled
-DRAM: Load request to register t2 from address 2004: Column 636 access --- Core 2
+DRAM: Load request to register t1 from address 300: Column 300 access --- Core 0
 
 Core 0 process data: 
 
@@ -401,7 +81,7 @@ R12	t4	0x00000000	0
 R13	t5	0x00000000	0
 R14	t6	0x00000000	0
 R15	t7	0x00000000	0
-R16	s0	0x00000000	0
+R16	s0	0x00000064	100
 R17	s1	0x00000000	0
 R18	s2	0x00000000	0
 R19	s3	0x00000000	0
@@ -427,107 +107,9 @@ mul	0
 beq	0
 bne	0
 slt	0
-lw	0
-sw	2
-addi	0
-
-Core 1 process data: 
-
-Register file of core 1
-R0	zero	0x00000000	0
-R1	at	0x00000000	0
-R2	v0	0x00000000	0
-R3	v1	0x00000000	0
-R4	a0	0x00000000	0
-R5	a1	0x00000000	0
-R6	a2	0x00000000	0
-R7	a3	0x00000000	0
-R8	t0	0x00000000	0
-R9	t1	0x00000000	0
-R10	t2	0x00000000	0
-R11	t3	0x00000000	0
-R12	t4	0x00000000	0
-R13	t5	0x00000000	0
-R14	t6	0x00000000	0
-R15	t7	0x00000000	0
-R16	s0	0x00000000	0
-R17	s1	0x00000000	0
-R18	s2	0x00000000	0
-R19	s3	0x00000000	0
-R20	s4	0x00000000	0
-R21	s5	0x00000000	0
-R22	s6	0x00000000	0
-R23	s7	0x00000000	0
-R24	t8	0x00000000	0
-R25	t9	0x00000000	0
-R26	k0	0x00000000	0
-R27	k1	0x00000000	0
-R28	gp	0x00000000	0
-R29	sp	0x00055554	349524
-R30	fp	0x00000000	0
-R31	ra	0x00000000	0
-
-Number of times each instruction is executed: 
-
-j	0
-add	1
-sub	0
-mul	0
-beq	0
-bne	0
-slt	0
-lw	1
-sw	0
-addi	0
-
-Core 2 process data: 
-
-Register file of core 2
-R0	zero	0x00000000	0
-R1	at	0x00000000	0
-R2	v0	0x00000000	0
-R3	v1	0x00000000	0
-R4	a0	0x00000000	0
-R5	a1	0x00000000	0
-R6	a2	0x00000000	0
-R7	a3	0x00000000	0
-R8	t0	0x00000000	0
-R9	t1	0x00000000	0
-R10	t2	0x00000000	0
-R11	t3	0x00000000	0
-R12	t4	0x00000000	0
-R13	t5	0x00000000	0
-R14	t6	0x00000000	0
-R15	t7	0x00000000	0
-R16	s0	0x00000000	0
-R17	s1	0x00000000	0
-R18	s2	0x00000000	0
-R19	s3	0x00000000	0
-R20	s4	0x00000000	0
-R21	s5	0x00000000	0
-R22	s6	0x00000000	0
-R23	s7	0x00000000	0
-R24	t8	0x00000000	0
-R25	t9	0x00000000	0
-R26	k0	0x00000000	0
-R27	k1	0x00000000	0
-R28	gp	0x00000000	0
-R29	sp	0x000aaaa8	699048
-R30	fp	0x00000000	0
-R31	ra	0x00000000	0
-
-Number of times each instruction is executed: 
-
-j	0
-add	0
-sub	0
-mul	0
-beq	0
-bne	0
-slt	0
-lw	3
-sw	0
-addi	0
+lw	4
+sw	1
+addi	1
 
 
-Throughput: 0.107692 Instructions per cycle
+Throughput: 0.352941 Instructions per cycle
