@@ -1,4 +1,0 @@
-main:
-    lw $t3, 1004($zero)
-    add $t1, $t0, $t0
-    
