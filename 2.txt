@@ -1,5 +1,0 @@
-main:
-    lw $t0, 1000($zero)
-    lw $t1, 2000($zero)
-    lw $t2, 2004($zero)
-    
